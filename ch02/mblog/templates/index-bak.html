@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的部落格</title>
+</head>
+<body>
+    <h1>這是唐詩欣賞的部落格</h1>
+    <hr>
+    
+    <br>
+    {% for post in posts %} 
+    <h2>{{post.title}}</h2>
+    <a href="/post/{{post.slug}}">{{post.title}}</a>
+    <p>{{post.body}}</p>
+    {% endfor %}
+    
+    
+    
+
+    
+    
+    <hr>
+    <h3>現在時刻：{{now}}</h3>
+</body>
+</html>
