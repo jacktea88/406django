@@ -1450,3 +1450,6 @@ ch02/mblog/mysite/migrations/__pycache__/__init__.cpython-313.pyc
 ch02/mblog/mysite/migrations/__pycache__/0001_initial.cpython-313.pyc
 ch02/mblog/mysite/templatetags/__pycache__/__init__.cpython-313.pyc
 ch02/mblog/mysite/templatetags/__pycache__/markdown_extras.cpython-313.pyc
+ch02/mblog/mysite/migrations/__pycache__/0002_newtable.cpython-313.pyc
+ch02/mblog/mysite/migrations/__pycache__/0003_product.cpython-313.pyc
+ch02/mblog/mysite/migrations/__pycache__/0004_alter_product_size.cpython-313.pyc
