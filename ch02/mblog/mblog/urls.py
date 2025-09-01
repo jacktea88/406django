@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mysite.views import index, showpost,mqtt, about, about_quotes, products
+from mysite.views import index, showpost,mqtt, about, about_quotes, products, products_id
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('about/',about),
     path('about-qutoes/',about_quotes),
     path('products/',products),
+    path('products/<str:id>',products_id),
 ]

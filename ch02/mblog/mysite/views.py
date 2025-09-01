@@ -1,6 +1,6 @@
 import random
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseNotFound
 from mysite.models import Post, Product
 from datetime import datetime
 # Create your views here.
@@ -61,7 +61,7 @@ def products(request):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>product</title>
+    <title>product list by HttpResponse</title>
 </head>
 <body>
     <table>
@@ -70,7 +70,7 @@ def products(request):
 </body>
 </html>
     '''
-    tags = "<tr><td>name</td><td>price</td><td>qty</td></tr>"
+    tags = "<tr><td>name111</td><td>price</td><td>qty</td></tr>"
     for product in products:
         print('product:', product)
         tags += f"<tr><td>{product.name}</td><td>{product.price}</td><td>{product.qty}</td></tr>"
@@ -81,3 +81,13 @@ def products(request):
     # print('html:', html)
     return HttpResponse(html)
     # return render(request, 'products.html', locals())
+
+def products_id(request, id):
+    try:
+        product = Product.objects.get(id=id)
+        print(product)
+    except Product.DoesNotExist:
+        # raise Http404("找不到商品")
+        return HttpResponseNotFound('找不到商品')
+    
+    return render(request, 'products_id.html', locals())
