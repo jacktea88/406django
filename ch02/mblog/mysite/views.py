@@ -91,3 +91,28 @@ def products_id(request, id):
         return HttpResponseNotFound('找不到商品')
     
     return render(request, 'products_id.html', locals())
+
+def student(request):
+    students = [
+    {'id': 1, 'name': '張小明', 'age': 20, 'class': 'A班'},
+    {'id': 2, 'name': '李小華', 'age': 19, 'class': 'B班'},
+    {'id': 3, 'name': '王小美', 'age': 21, 'class': 'A班'},
+    {'id': 4, 'name': '陳小強', 'age': 20, 'class': 'C班'},
+]
+
+    return render(request, 'student.html', locals())
+
+def grade(request):
+    student_grades = [
+    {'id': 1, 'name': '張小明', 'chinese': 95, 'math': 92, 'english': 98},
+    {'id': 2, 'name': '李小華', 'chinese': 90, 'math': 76, 'english': 88},
+    {'id': 3, 'name': '王小美', 'chinese': 72, 'english': 85, 'math': 70},
+    {'id': 4, 'name': '陳小強', 'chinese': 68, 'math': 65, 'english': 62},
+]
+
+    # 計算平均分數 (在template中也可以使用custom filter)
+    for student in student_grades:
+        total = student['chinese'] + student['math'] + student['english']
+        student['average'] = round(total / 3, 1)
+
+    return render(request, 'grade.html', locals())
