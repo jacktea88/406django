@@ -18,3 +18,23 @@ def showpost(request,slug):
 
 def mqtt(request):
     return render(request, 'mqtt-dashboard-temp-json.html', locals())
+
+def about(request):
+    html = '''
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about</title>
+</head>
+<body>
+    <h1>demo by H1</h1>
+    hello world, this is about page demo by ""HttpResponse""
+</body>
+</html>
+    '''
+    # return HttpResponse(html)
+
+    # return HttpResponse("Hello, world. You're at the about page.")
+    return render(request, 'about_basic.html', locals())

@@ -56,6 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +67,8 @@ TEMPLATES = [
         },
     },
 ]
+# print('base dir:', BASE_DIR)
+# print('templates dir:', BASE_DIR / 'templates')
 
 WSGI_APPLICATION = 'mblog.wsgi.application'
 
