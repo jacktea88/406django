@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book list</title>
+</head>
+<body>
+    <h2>這是書籍列表+資料</h2>
+    <DIV>
+
+        <ul>
+            {% for book in books %}
+            <li>
+                {{ book.id }} {{ book.title }} {{ book.author }}
+                {% comment %} <a href="{% url 'book_list' book.id %}">{{ book.title }}</a> {% endcomment %}
+            </li>
+            {% endfor %}
+        </ul>
+    </DIV>
+</body>
+</html>
