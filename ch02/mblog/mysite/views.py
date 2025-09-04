@@ -20,7 +20,8 @@ def showpost(request,slug):
 def mqtt(request):
     return render(request, 'mqtt-dashboard-temp-json.html', locals())
 
-def about(request):
+def about(request, title, content):
+    print('##### title:', title, 'content:', content, '#####')
     html = '''
     <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +83,7 @@ def products(request):
     return HttpResponse(html)
     # return render(request, 'products.html', locals())
 
-def products_id(request, id):
+def products_id(request, id=1): # 設定default value，預防網址沒帶id
     try:
         product = Product.objects.get(id=id)
         print(product)
