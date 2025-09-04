@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -90,4 +90,6 @@ def books_by_category(request, category_name):
     print('filtered_books:', filtered_books)
     return render(request, 'category.html', locals())
 
-
+def index_api(request):
+    return JsonResponse({"message": "Hello World!"})
+    # return render(request, 'index_api.html')
