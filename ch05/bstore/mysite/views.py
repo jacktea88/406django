@@ -57,6 +57,37 @@ def book_detail(request, book_id):
     }
     return render(request, 'book_detail.html', locals())
 
+def books_by_author(request, author_slug):
+    filtered_books = [
+        book for book in MOCK_BOOKS 
+        if book['author_slug'] == author_slug
+    ]
+    
+    if not filtered_books:
+        raise Http404(f"作者 '{author_slug}' 不存在或無書籍")
+    
+    context = {
+        'books': filtered_books,
+        'author_name': filtered_books[0]['author'],
+        'page_title': f'作者：{filtered_books[0]["author"]}'
+    }
+    return render(request, 'author.html', locals())
 
+def books_by_category(request, category_name):
+    filtered_books = []
+    for book in MOCK_BOOKS:
+        if book['category'] == category_name:
+            filtered_books.append(book)
+    
+    if not filtered_books:
+        raise Http404(f"分類 '{category_name}' 不存在或無書籍")
+    
+    context = {
+        'books': filtered_books,
+        'category_name': category_name,
+        'page_title': f'分類：{category_name}'
+    }
+    print('filtered_books:', filtered_books)
+    return render(request, 'category.html', locals())
 
 
