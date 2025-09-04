@@ -44,6 +44,6 @@ urlpatterns = [
     path('book/', include(book_patterns)),
     # path('products/',products_id),
     # path('products/<str:id>',products_id),
-    path('student/',student,{'age':20}),
+    path('student/',student, name='student-url'),
     path('grade/',grade),
 ]

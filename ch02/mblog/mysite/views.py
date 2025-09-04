@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import Http404, HttpResponse, HttpResponseNotFound
 from mysite.models import Post, Product
 from datetime import datetime
+from django.urls import reverse
 # Create your views here.
 
 def index(request):
@@ -100,7 +101,7 @@ def student(request):
     {'id': 3, 'name': '王小美', 'age': 21, 'class': 'A班'},
     {'id': 4, 'name': '陳小強', 'age': 20, 'class': 'C班'},
 ]
-
+    print('student path name url:', reverse('student-url'))
     return render(request, 'student.html', locals())
 
 def grade(request):
