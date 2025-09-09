@@ -48,6 +48,12 @@ def index_api(request):
         "version": 1.0,
         "endpoint": {
             "books": "http://127.0.0.1:8000/api/books/",
+            "categories": "http://127.0.0.1:8000/api/categories/",
+            "book": "http://127.0.0.1:8000/api/books/{book_id}/",
+            "category": "http://127.0.0.1:8000/api/categories/{category_id}/",
+            "reviews": "http://127.0.0.1:8000/api/reviews/",
+            "review": "http://127.0.0.1:8000/api/reviews/{review_id}/",
+            
         }
         
         })
