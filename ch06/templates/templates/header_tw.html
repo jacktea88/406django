@@ -1,0 +1,20 @@
+    <nav class="navbar navbar-expand-sm navbar-primary bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">台灣電視台</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
+                aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarID">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="{% url "twtv-url" 0 %}">台視</a>
+                    <a class="nav-link" href="{% url "twtv-url" 1 %}">非凡</a>
+                    <a class="nav-link" href="{% url "twtv-url" 2 %}">民視</a>
+                    <a class="nav-link" href="{% url "twtv-url" 3 %}">中視</a>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
