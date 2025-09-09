@@ -1,6 +1,11 @@
     <nav class="navbar navbar-expand-sm navbar-primary bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">台灣電視台</a>
+            <a class="navbar-brand" href="#">
+                {% load static %}
+                <img src="{% static 'images/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+                台灣電視台
+            </a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
                 aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
