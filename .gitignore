@@ -1478,3 +1478,12 @@ ch06/templates/mysite/__pycache__/views.cpython-313.pyc
 ch06/templates/templates/__pycache__/settings.cpython-313.pyc
 ch06/templates/mysite/__pycache__/views.cpython-313.pyc
 ch06/templates/mysite/__pycache__/views.cpython-313.pyc
+ch07/dborm/dborm/__pycache__/__init__.cpython-313.pyc
+ch07/dborm/dborm/__pycache__/settings.cpython-313.pyc
+ch07/dborm/dborm/__pycache__/urls.cpython-313.pyc
+ch07/dborm/dborm/__pycache__/wsgi.cpython-313.pyc
+ch07/dborm/mysite/__pycache__/__init__.cpython-313.pyc
+ch07/dborm/mysite/__pycache__/admin.cpython-313.pyc
+ch07/dborm/mysite/__pycache__/apps.cpython-313.pyc
+ch07/dborm/mysite/__pycache__/models.cpython-313.pyc
+ch07/dborm/mysite/migrations/__pycache__/__init__.cpython-313.pyc
