@@ -61,3 +61,12 @@ def carprice(request, maker=0):
     maker_name =  car_maker[maker]
     cars = car_list[maker]
     return render(request, 'carprice.html', locals())    
+
+# 公司網站模板
+def home(request):
+    return render(request, 'home.html', locals())
+    # return render(request, 'home_all.html', locals())
+
+def about(request):
+    return render(request, 'about.html', locals())
+    # return render(request, 'about_all.html', locals())

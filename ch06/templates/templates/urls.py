@@ -31,5 +31,10 @@ urlpatterns = [
     # car price
     path('carprice/', views.carprice, name='carprice'),
     path('carprice/<int:maker>', views.carprice, name='carprice-url'),
+    # execercise
+    path('home/', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    
+    
     
 ]
