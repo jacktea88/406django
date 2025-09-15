@@ -25,4 +25,7 @@ urlpatterns = [
     path('twtv/<int:tv_id>', views.twtv, name='twtv-url'),
     path('engtv/', views.engtv, name='engtv'),
     path('engtv/<int:tv_id>', views.engtv, name='engtv-url'),
+    path('carlist/', views.carlist, name='carlist'),
+    path('carlist/<int:maker>', views.carlist, name='carlist-url'),
+    
 ]

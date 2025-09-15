@@ -28,3 +28,17 @@ def engtv(request, tv_id=0):
     tv = tv_list[tv_id]
 
     return render(request, 'engtv.html', locals())
+
+def carlist(request, maker=0):
+    car_maker = ['SAAB', 'Ford', 'Honda', 'Mazda', 'Nissan','Toyota' ]
+    car_list = [ [],
+            ['Fiesta', 'Focus', 'Modeo', 'EcoSport', 'Kuga', 'Mustang'],
+            ['Fit', 'Odyssey', 'CR-V', 'City', 'NSX'],
+            ['Mazda3', 'Mazda5', 'Mazda6', 'CX-3', 'CX-5', 'MX-5'],
+            ['Tida', 'March', 'Livina', 'Sentra', 'Teana', 'X-Trail', 'Juke', 'Murano'],
+            ['Camry','Altis','Yaris','86','Prius','Vios', 'RAV4', 'Wish']
+              ]
+    maker = maker #maker範圍是 0~5
+    maker_name =  car_maker[maker]
+    cars = car_list[maker]
+    return render(request, 'carlist.html', locals())
