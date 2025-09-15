@@ -13,8 +13,8 @@
             <td>價格</td></tr>
     {% endif %}
         <tr bgcolor='{% cycle "#ffccff" "ccffcc" %}'>
-            <td>{{ p.nickname }}</td>
-            {% comment %} <td><a href='{% url "detail-url" p.id %}'>{{ p.nickname }}</a></td> {% endcomment %}
+            {% comment %} <td>{{ p.nickname }}</td> {% endcomment %}
+            <td><a href='{% url "detail-url" p.id %}'>{{ p.nickname }}</a></td>
             <td>{{ p.pmodel.maker.name }}/{{ p.pmodel.name }}</td>
             <td>{{ p.year  }}</td>
             <td align=right>{{ p.price }}</td>
