@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 
 {% block title %}
@@ -12,12 +13,15 @@
     <tr><td align=center>{{ product.description }}</td></tr>
     <tr><td align=center>西元{{ product.year }}年出廠</td></tr>
     <tr><td align=center>售價：NT${{ product.price }}元</td></tr>
+    
     {% for image in images %}
+    
         {% if forloop.first %} 
             <tr><td align=center>
         {% endif %}
             {% comment %} <img src='{{ image.url }}' width=350><br> {% endcomment %}
-            {% comment %} <img src="/media/{{image.media}}" width=350><br> {% endcomment %}
+            {% comment %} <img src="/media/z301.jpg" width=350><br> {% endcomment %}
+            <img src="/media/{{image.description}}" width=350><br>
         {% if forloop.last %}
             </td></tr>
         {% endif %}
