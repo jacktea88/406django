@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,6 +13,9 @@ def twtv(request, tv_id=0):
         {'name':'民視', 'tvcode':'ylYJSBUgaMA'},
         {'name':'中視', 'tvcode':'TCnaIE_SAtM'},]
     tv = tv_list[tv_id]
+
+    now = datetime.now()
+    hour = now.hour
 
     return render(request, 'twtv.html', locals())
 
