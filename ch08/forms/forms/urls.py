@@ -24,5 +24,5 @@ urlpatterns = [
     path('posting/', views.posting, name='posting'),
     path('listing/', views.listing, name='listing'),
     path('contact/', views.contact, name='contact'),
-    # path('post2db/', views.post2db, name='post2db'),
+    path('post2db/', views.post2db, name='post2db'),
 ]

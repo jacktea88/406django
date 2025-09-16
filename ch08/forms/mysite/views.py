@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from mysite import models, forms
 from django.core.mail import EmailMessage
 from django.conf import settings
@@ -125,3 +125,22 @@ def contact(request):
             message = '請檢查您的輸入'
             print(message)
     return render(request, 'contact.html', locals())
+
+def post2db(request):
+    print('post 2 db method', request.method)
+    if request.method == 'POST':
+        post_form = forms.PostForm(request.POST)
+        if post_form.is_valid():
+            post_form.save()
+            message = '張貼成功'
+            print('張貼成功')
+            return redirect('/')
+        else:
+            message = '每一欄都要填寫post'
+            print('not valid')
+    else:  # GET
+        post_form = forms.PostForm()
+        moods = models.Mood.objects.all()
+        message = '每一欄都要填寫get'
+        print('get')
+    return render(request, 'post2db.html', locals())
