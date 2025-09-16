@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from mysite import models
+from mysite import models, forms
+
 
 # Create your views here.
 # def index(request):
@@ -99,3 +100,7 @@ def posting(request):
         message = '每一欄都要填寫posting else'    
     # message = '如要張貼訊息，則每一個欄位都要填...'
     return render(request, "posting.html", locals())
+
+def contact(request):
+    form = forms.ContactForm()
+    return render(request, 'contact.html', locals())
