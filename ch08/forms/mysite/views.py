@@ -101,6 +101,25 @@ def posting(request):
     # message = '如要張貼訊息，則每一個欄位都要填...'
     return render(request, "posting.html", locals())
 
+# def contact(request):
+#     form = forms.ContactForm()
+#     return render(request, 'contact.html', locals())
+
 def contact(request):
-    form = forms.ContactForm()
+    if request.method == 'POST':
+        form = forms.ContactForm(request.POST)
+        if form.is_valid():
+            user_name = form.cleaned_data['user_name']
+            user_city = form.cleaned_data['user_city']
+            user_school = form.cleaned_data['user_school']
+            user_email = form.cleaned_data['user_email']
+            user_message = form.cleaned_data['user_message']
+            # mail_body = '姓名: %s\n城市: %s\n是否在學: %s\n電子郵件: %s\n意見: %s' % (user_name, user_city, user_school, user_email, user_message)
+            # email = EmailMessage('來自網站的意見', mail_body, settings.EMAIL_HOST_USER, [user_email])
+            # email.send()
+            message = '您的意見已傳送給我們'
+            print(message)
+        else:
+            message = '請檢查您的輸入'
+            print(message)
     return render(request, 'contact.html', locals())
