@@ -1488,3 +1488,13 @@ ch07/dborm/mysite/__pycache__/apps.cpython-313.pyc
 ch07/dborm/mysite/__pycache__/models.cpython-313.pyc
 ch07/dborm/mysite/migrations/__pycache__/__init__.cpython-313.pyc
 ch07/dborm/mysite/__pycache__/views.cpython-313.pyc
+ch08/forms/forms/__pycache__/__init__.cpython-313.pyc
+ch08/forms/forms/__pycache__/settings.cpython-313.pyc
+ch08/forms/forms/__pycache__/urls.cpython-313.pyc
+ch08/forms/forms/__pycache__/wsgi.cpython-313.pyc
+ch08/forms/mysite/__pycache__/__init__.cpython-313.pyc
+ch08/forms/mysite/__pycache__/admin.cpython-313.pyc
+ch08/forms/mysite/__pycache__/apps.cpython-313.pyc
+ch08/forms/mysite/__pycache__/models.cpython-313.pyc
+ch08/forms/mysite/__pycache__/views.cpython-313.pyc
+ch08/forms/mysite/migrations/__pycache__/__init__.cpython-313.pyc
