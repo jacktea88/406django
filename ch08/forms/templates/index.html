@@ -4,5 +4,39 @@
 
 <div class='container' align=center>
     <h2>歡迎來到心情留言板</h2>
+    <form action="/" method="GET">
+        {% csrf_token %}
+        <label for="byear">Your Birthyear</label>
+        <select name="byear" id="byear">
+            {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select> 
+        <br>
+        <input type="checkbox" name="fcolor" id="" value="red">red
+        <input type="checkbox" name="fcolor" id="" value="blue">blue
+        <input type="checkbox" name="fcolor" id="" value="green">green
+        <input type="checkbox" name="fcolor" id="" value="yellow">yellow
+        <input type="checkbox" name="fcolor" id="" value="orange">orange
+        <br>
+        
+        <label for="user_id">Your ID</label>
+        <input type="text" name="user_id" id="user_id">
+        <label for="user_pass">Your Password</label>
+        <input type="password" name="user_pass" id="user_pass">
+        <input type="submit" value="登入">
+        <input type="reset" value="清除重填">
+    </form>
+    {{ user_id}} {{ user_pass }} {{ user_byear }} <br>
+    {% for c in urfcolor %}
+        {{ c }}
+    {% empty %}
+        沒有選擇顏色
+    {% endfor %}
+    {% if verified %}
+        <h3>登入成功</h3>
+    {% else %}
+        <h3>登入失敗</h3>
+    {% endif %}
 </div>
 {% endblock content %}
