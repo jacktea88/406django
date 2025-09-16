@@ -21,4 +21,7 @@ from mysite import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('posting/', views.posting, name='posting'),
+    path('listing/', views.listing, name='listing'),
+    # path('post2db/', views.post2db, name='post2db'),
 ]

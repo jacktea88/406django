@@ -44,14 +44,14 @@ def index(request):
     posts = models.Post.objects.all().order_by('-pub_time')
     moods = models.Mood.objects.all()
     try:
-        # user_id = request.POST['user_id']
-        # user_pass = request.POST['user_pass']
-        # user_post = request.POST['user_post']
-        # user_mood = request.POST['mood']
-        user_id = request.GET['user_id']
-        user_pass = request.GET['user_pass']
-        user_post = request.GET['user_post']
-        user_mood = request.GET['mood']
+        user_id = request.POST['user_id']
+        user_pass = request.POST['user_pass']
+        user_post = request.POST['user_post']
+        user_mood = request.POST['mood']
+        # user_id = request.GET['user_id']
+        # user_pass = request.GET['user_pass']
+        # user_post = request.GET['user_post']
+        # user_mood = request.GET['mood']
 
         print(user_id, user_pass, user_post, user_mood)
     except:
@@ -67,3 +67,35 @@ def index(request):
         message = '每一欄都要填寫'
     # print(user_id, user_pass, user_post, user_mood)    
     return render(request, 'index_post.html', locals())
+
+def listing(request):
+    posts = models.Post.objects.order_by('-pub_time')
+    moods = models.Mood.objects.all()
+    return render(request, 'listing.html', locals())
+
+def posting(request):
+    moods = models.Mood.objects.all()
+    try:
+        user_id = request.POST['user_id']
+        user_pass = request.POST['user_pass']
+        user_post = request.POST['user_post']
+        user_mood = request.POST['mood']
+        # user_id = request.GET['user_id']
+        # user_pass = request.GET['user_pass']
+        # user_post = request.GET['user_post']
+        # user_mood = request.GET['mood']
+
+        print(user_id, user_pass, user_post, user_mood)
+    except:
+        user_id = None
+        message = '每一欄都要填寫posting except'
+    if user_id != None:
+        
+        mood = models.Mood.objects.get(status = user_mood)
+        post = models.Post(mood = mood, nickname = user_id, message = user_post, del_pass = user_pass)
+        post.save()
+        message = '張貼成功posting'
+    else:
+        message = '每一欄都要填寫posting else'    
+    # message = '如要張貼訊息，則每一個欄位都要填...'
+    return render(request, "posting.html", locals())
