@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from mysite import forms, models
+from django.contrib.sessions.models import Session
 
 # Create your views here.
 # def index(request):
@@ -44,3 +45,12 @@ def login(request):
     else:   # GET
         login_form = forms.LoginForm()
     return render(request, 'login.html', locals())
+
+# session logout
+def logout(request):
+    if 'username' in request.session:
+        Session.objects.all().delete()
+        # del request.session['username']
+        print('登出成功')
+        message = '登出成功'
+    return redirect('/')
