@@ -30,5 +30,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('userinfo/', views.userinfo, name='userinfo'),
     path('votes/', views.votes, name='votes'),
+    path('plotly/', views.plotly, name='plotly'),
+    
     
 ]

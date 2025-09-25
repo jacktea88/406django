@@ -11,6 +11,10 @@ from django.contrib.auth.decorators import login_required
 # for votes
 from mysite.models import Vote
 
+# use plotly
+from plotly.offline import plot
+import plotly.graph_objs as go
+
 # Create your views here.
 # def index(request):
 #     if request.session.test_cookie_worked():
@@ -156,3 +160,16 @@ def votes(request):
     data = Vote.objects.all().order_by('name')
     return render(request, 'votes.html', locals())
     return render(request, 'votes_table.html', locals())
+
+# use plotly
+def plotly(request):
+    data = Vote.objects.all()
+    # data = Vote.objects.all().order_by('name')
+    x = [d.votes for d in data]
+    y = [d.name for d in data][::-1]
+    trace = go.Bar(x=x, y=y, name='2022', orientation='h')
+    layout = go.Layout(title='2022年高雄市左楠區市議員選舉得票數',
+                       height=500)
+    fig = go.Figure(data=[trace], layout=layout)
+    plot_div = plot(fig, output_type='div')
+    return render(request, 'plotly.html', locals())
