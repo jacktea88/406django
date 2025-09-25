@@ -17,6 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mysite import views
+
+# use django auth login setting
+admin.site.site_header = '我的網站header'
+admin.site.site_title = '我的網站site title'
+admin.site.index_title = '後台管理index title'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),

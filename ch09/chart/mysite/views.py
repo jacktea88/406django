@@ -132,8 +132,10 @@ def userinfo(request):
         print('username不存在')
         return redirect('/login/')
     try:
-        # userinfo = models.User.objects.get(name=username)
-        userinfo = User.objects.get(username=username)
+        user = User.objects.get(username=username)
+        userinfo = models.Profile.objects.get(user=user)    # 用自己擴充的Profile欄位
+        # userinfo = models.User.objects.get(name=username) # 用自己的User欄位
+        # userinfo = User.objects.get(username=username)     # 用auth內建的User欄位
         # userinfo = models.Profile.objects.get(user=user)
     except Exception as e:
         print(e)
