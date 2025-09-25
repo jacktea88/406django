@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
+# for votes
+from mysite.models import Vote
+
 # Create your views here.
 # def index(request):
 #     if request.session.test_cookie_worked():
@@ -147,3 +150,9 @@ def logout(request):
     auth.logout(request)
     messages.warning(request, '登出成功')
     return redirect('/')
+
+# votes table
+def votes(request):
+    data = Vote.objects.all().order_by('name')
+    return render(request, 'votes.html', locals())
+    return render(request, 'votes_table.html', locals())
