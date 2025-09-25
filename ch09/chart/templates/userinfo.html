@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class='container' align=center>
+    {% if message %}
+    <div class='alert alert-danger'>{{ message }}</div>
+    {% endif %}
+    <h2>歡迎光臨我的網站</h2>
+    {% if username %}登入成功，歡迎您,{{ username }}
+    {% else %}
+    登入錯誤
+    {% endif %}
+    <p>
+        您的姓名是:{{ userinfo.name }}<br>
+        您的電子郵件是:{{ userinfo.email }}
+    </p>
+
+</div>
+{% endblock content %}

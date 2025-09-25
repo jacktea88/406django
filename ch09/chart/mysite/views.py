@@ -54,3 +54,18 @@ def logout(request):
         print('登出成功')
         message = '登出成功'
     return redirect('/')
+
+# user info from session
+def userinfo(request):
+    if 'username' in request.session:
+        username = request.session['username']
+        print('username:in userinfo', username)
+    else:
+        print('username不存在')
+        return redirect('/login/')
+    try:
+        userinfo = models.User.objects.get(name=username)
+    except Exception as e:
+        print(e)
+        pass
+    return render(request, 'userinfo.html', locals())
