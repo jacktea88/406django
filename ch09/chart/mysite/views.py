@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from mysite import forms, models
 from django.contrib.sessions.models import Session
+from django.contrib import messages
 
 # Create your views here.
 # def index(request):
@@ -17,11 +18,13 @@ def index(request):
     if 'username' in request.session:
         username = request.session['username']
         print('username:in index', username)
-        message = '登入成功'
+        # message = '登入成功'
+        messages.info(request, '登入成功')
     else:
         username = None
         print('username不存在')
-        message = '登入失敗'
+        # message = '登入失敗'
+        messages.warning(request, '登入失敗')
     return render(request, 'index.html', locals())
 
 def login(request):
@@ -35,13 +38,17 @@ def login(request):
                 user = models.User.objects.get(name=login_name)
                 if user.password == login_password:
                     request.session['username'] = login_name
+                    messages.warning(request, '成功登入了')
                     return redirect('/')
                 else:
-                    message = '密碼錯誤'
+                    # message = '密碼錯誤'
+                    messages.warning(request, '密碼錯誤')
             except:
-                message = '找不到使用者'
+                # message = '找不到使用者'
+                messages.warning(request, '找不到使用者')
         else:
-            message = '請檢查輸入的欄位內容'
+            # message = '請檢查輸入的欄位內容'
+            messages.warning(request, '請檢查輸入的欄位內容')
     else:   # GET
         login_form = forms.LoginForm()
     return render(request, 'login.html', locals())
@@ -52,7 +59,8 @@ def logout(request):
         Session.objects.all().delete()
         # del request.session['username']
         print('登出成功')
-        message = '登出成功'
+        # message = '登出成功'
+        messages.warning(request, '登出成功')
     return redirect('/')
 
 # user info from session
