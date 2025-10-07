@@ -15,6 +15,12 @@ from mysite.models import Vote
 from plotly.offline import plot
 import plotly.graph_objs as go
 
+# for temperature
+from mysite.models import Temperature
+import json
+from django.shortcuts import HttpResponse
+from django.views.decorators.csrf import csrf_exempt    
+
 # Create your views here.
 # def index(request):
 #     if request.session.test_cookie_worked():
@@ -173,3 +179,30 @@ def plotly(request):
     fig = go.Figure(data=[trace], layout=layout)
     plot_div = plot(fig, output_type='div')
     return render(request, 'plotly.html', locals())
+
+# 接收溫度數據並儲存到資料庫
+@csrf_exempt
+def plotly_api(request):
+    #接收前端sendTemperatureToBackend(temperature), 
+    # 接收XMLHttpRequest()傳來的資料
+    print('request.body:', request.body)
+    # print('request.POST:', request.POST)
+    # print('request:', request)
+    if request.body :
+        data = json.loads(request.body.decode('utf-8'))
+        print('json data:', data)
+        # temperature = int(data['temperature'])
+        temperature = data['temperature']
+    else : 
+        temperature = 0
+    print(temperature)
+    # 儲存溫度數據到資料庫
+    temp = Temperature(temperature=temperature)
+    temp.save()
+    print('溫度數據已儲存到資料庫')
+    return HttpResponse(temperature)
+    return render(request, 'mqtt.html', locals())
+
+# 啟動mqtt溫度資料傳送
+def mqtt_show(request):
+    return render(request, 'mqtt.html', locals())

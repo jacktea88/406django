@@ -31,6 +31,10 @@ urlpatterns = [
     path('userinfo/', views.userinfo, name='userinfo'),
     path('votes/', views.votes, name='votes'),
     path('plotly/', views.plotly, name='plotly'),
+    # for mqtt temperature
+    path('api/temperature/', views.plotly_api, name='plotly_api'),
+    path('mqtt/', views.mqtt_show, name='mqtt_show'),
+    # path('temp/', views.plotly_mqtt, name='plotly_mqtt'),
     
     
 ]
