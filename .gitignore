@@ -1511,3 +1511,13 @@ ch09/chart/mysite/__pycache__/views.cpython-313.pyc
 ch09/chart/mysite/migrations/__pycache__/0004_temperature.cpython-313.pyc
 ch09/chart/mysite/__pycache__/models.cpython-313.pyc
 ch09/chart/mysite/__pycache__/views.cpython-313.pyc
+ch10/reg/mysite/__pycache__/__init__.cpython-313.pyc
+ch10/reg/mysite/__pycache__/admin.cpython-313.pyc
+ch10/reg/mysite/__pycache__/apps.cpython-313.pyc
+ch10/reg/mysite/__pycache__/forms.cpython-313.pyc
+ch10/reg/mysite/__pycache__/models.cpython-313.pyc
+ch10/reg/mysite/__pycache__/views.cpython-313.pyc
+ch10/reg/reg/__pycache__/__init__.cpython-313.pyc
+ch10/reg/reg/__pycache__/settings.cpython-313.pyc
+ch10/reg/reg/__pycache__/urls.cpython-313.pyc
+ch10/reg/reg/__pycache__/wsgi.cpython-313.pyc
