@@ -176,6 +176,7 @@ def product(request, id):
     return render(request, 'product.html', locals())
 
 # for add to cart
+@login_required
 def add_to_cart(request, id, quantity):
     cart = Cart(request)
     product = models.Product.objects.get(id=id)
@@ -184,6 +185,7 @@ def add_to_cart(request, id, quantity):
     return redirect('/')
 
 # for remove from cart
+@login_required
 def remove_from_cart(request, id):
     product = models.Product.objects.get(id=id)
     cart = Cart(request)
@@ -191,12 +193,14 @@ def remove_from_cart(request, id):
     return redirect('/cart/')
 
 # for cart detail
+@login_required
 def cart_detail(request):
     all_categories = models.Category.objects.all()
     cart = Cart(request).cart # 這裡是取得購物車所有的商品
     #Cart(request) 會回傳一個 Cart 實例，而 .cart 則是取得該實例中的購物車物件。
+    test = 'test'
 
-    print(cart)
+    print('cart', cart)
 
     total_price = 0
     for _, item in cart.items(): # item是一個字典，_ 是一個常見的Python慣例，代表一個不需要使用的變數(id),而 item 則是代表每個商品項目。

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load cart_tag %}
+
+{% block content %}
+
+<div class='container' align=center>
+    {% for message in messages %}
+    <div class='alert alert-{{message.tags}}'>{{ message }}</div>
+    {% endfor %}
+    <h2>購物車內容</h2>
+    {% comment %} {{ cart.items }} {% endcomment %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">商品</th>
+                <th scope="col">單價</th>
+                <th scope="col">數量</th>
+                <th scope="col">小計</th>
+                <th scope="col">刪除</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for id, item in cart.items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price|multiply:item.quantity }}</td>
+                <td><a href="{% url 'removeitem-url' id %}">刪除</a></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>總計</td>
+                <td>{{ total_price }}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+</div>
+{% endblock content %}
