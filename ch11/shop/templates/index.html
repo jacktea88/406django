@@ -23,7 +23,11 @@
             {% for id, item in request.session.cart.items %}
             <p>{{ item.name }} {{ item.quantity }} 個</p>
             {% endfor %}
-            {% comment %} {% if user.is_authenticated %} <p><a href='{% url "order-url" %}'>結帳</a></p> {% else %} <p><a href='{% url "login" %}'>登入</a> 後即可結帳</p> %}{% endif %} {% endcomment %}
+            {% if user.is_authenticated %} 
+            <p><a href='{% url "order-url" %}'>結帳</a></p> 
+            {% else %} 
+            <p><a href='{% url "login" %}'>登入</a> 後即可結帳</p> 
+            {% endif %}
         </div>
         {% for product in all_products %}
         <div class="col-md-3">

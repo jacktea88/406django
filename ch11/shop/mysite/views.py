@@ -24,6 +24,10 @@ from django.views.decorators.csrf import csrf_exempt
 # for cart
 from cart.cart import Cart
 
+# for order
+from django.core.mail import send_mail
+from django.conf import settings
+
 # Create your views here.
 # def index(request):
 #     if request.session.test_cookie_worked():
@@ -208,3 +212,68 @@ def cart_detail(request):
         total_price += current_price
 
     return render(request, 'cart.html', locals())
+
+# for order
+# @verify_email_required
+def order(request):
+    all_categories = models.Category.objects.all()
+    cartInstance = Cart(request)
+    cart = cartInstance.cart
+    total_price = 0
+    for _, item in cart.items():
+        current_price = float(item['price']) * int(item['quantity'])
+        total_price += current_price
+    
+    if request.method == 'POST':
+        user = User.objects.get(username=request.user.username)
+        new_order = models.Order(user=user)
+
+        form = forms.OrderForm(request.POST, instance=new_order)
+        if form.is_valid():
+            order = form.save()
+            email_messages = "您的購物內容如下:\n"
+            for _, item in cart.items(): # item是一個字典，_ 是一個常見的Python慣例，代表一個不需要使用的變數(id),而 item 則是代表每個商品項目。
+                product = models.Product.objects.get(id=item['product_id'])
+                models.OrderItem.objects.create(
+                    order=order, 
+                    product=product,
+                    price = item['price'],
+                    quantity=item['quantity']
+                )
+                email_messages = email_messages + "\n" + \
+                                "{}, {}, {}".format(item['name'], \
+                                item['price'], item['quantity'])
+            email_messages = email_messages + \
+                            "\n總金額為:" + str(total_price)
+            #清空購物車
+            cartInstance.cart.clear()
+
+            messages.success(request, '訂單已成立，請到信箱查看訂單內容')
+            #寄送訂單給客戶
+            send_mail(
+                '訂單已成立',
+                email_messages,
+                settings.EMAIL_HOST_USER, # 這裡是寄件者
+                [user.email], # 這裡是收件者
+            )
+            #寄送訂單給管理員
+            send_mail(
+                '有新訂單成立通知',
+                email_messages,
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_HOST_USER],
+            )
+            return redirect('/myorders/')
+        else:
+            messages.error(request, '訂單成立失敗')
+    else:   # GET
+        form = forms.OrderForm()
+
+    return render(request, 'order.html', locals())
+
+# for my orders
+def my_orders(request):
+    all_categories = models.Category.objects.all()
+    orders = models.Order.objects.filter(user=request.user)
+
+    return render(request, 'myorders.html', locals())

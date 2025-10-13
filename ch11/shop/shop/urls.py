@@ -43,8 +43,8 @@ urlpatterns = [
     path('cart/additem/<int:id>/<int:quantity>/', views.add_to_cart, name='additem-url'),
     path('cart/removeitem/<int:id>/', views.remove_from_cart, name='removeitem-url'),
     # for order
-    # path('order/', views.order, name='order-url'),
-    # path('myorders/', views.my_orders, name='myorders-url'),
+    path('order/', views.order, name='order-url'),
+    path('myorders/', views.my_orders, name='myorders-url'),
     
 
     
