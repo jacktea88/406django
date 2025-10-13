@@ -34,7 +34,7 @@ urlpatterns = [
     path('accounts/', include('registration.backends.default.urls')),
     # path('accounts/', include('allauth.urls')),
     # for product list
-    # path('product/<int:id>/', views.product, name='product-url'),
+    path('product/<int:id>/', views.product, name='product-url'),
     # path('<int:id>/', views.index),
     # for filer
     path('filer/', include('filer.urls')),

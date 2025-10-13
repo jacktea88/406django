@@ -48,7 +48,7 @@ from django.views.decorators.csrf import csrf_exempt
 # use django auth for index
 def index(request):
     all_products = models.Product.objects.all()
-    
+
     if request.user.is_authenticated:
         username = request.user.username
         print('username:in index', username)
@@ -163,3 +163,11 @@ def logout(request):
     messages.warning(request, '登出成功')
     return redirect('/')
 
+# for product detail
+def product(request, id):
+    try:
+        product = models.Product.objects.get(id=id)
+    except:
+        product = None
+    
+    return render(request, 'product.html', locals())
