@@ -246,7 +246,7 @@ def order(request):
             email_messages = email_messages + \
                             "\n總金額為:" + str(total_price)
             #清空購物車
-            cartInstance.cart.clear()
+            cartInstance.clear()
 
             messages.success(request, '訂單已成立，請到信箱查看訂單內容')
             #寄送訂單給客戶
