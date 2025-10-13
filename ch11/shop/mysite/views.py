@@ -47,6 +47,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 # use django auth for index
 def index(request):
+    all_products = models.Product.objects.all()
+    
     if request.user.is_authenticated:
         username = request.user.username
         print('username:in index', username)

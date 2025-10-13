@@ -15,5 +15,18 @@
     登入錯誤
     {% endif %}
 
+    <div class="row">
+        {% for product in all_products %}
+        <div class="col-md-3">
+        {% comment %} <img src="{{ product.image }}" alt="無圖片"> {% endcomment %}
+        <img src="{{ product.image.url }}" alt="無圖片">
+        {{ product.name }}<br>
+        {{ product.price }}<br>
+        {{ product.description }}    
+        </div>
+        {% endfor %}
+
+    </div>
+
 </div>
 {% endblock content %}

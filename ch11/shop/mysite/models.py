@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib import auth
+# for filer
+from filer.fields.image import FilerImageField
 
 # Create your models here.
 class User(models.Model):
@@ -40,3 +42,26 @@ class Temperature(models.Model):
 
     def __str__(self):
         return str(self.temperature)    
+
+# 建立商品類別資料表
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+    
+# 建立商品資料表
+class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    sku = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    # for filer
+    # image = models.URLField(max_length=200, null=True)
+    image = FilerImageField(null=True, blank=True, related_name="product_image", on_delete=models.CASCADE)
+    website = models.URLField(max_length=200, null=True)
+    stock = models.PositiveIntegerField(default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def __str__(self):
+        return self.name

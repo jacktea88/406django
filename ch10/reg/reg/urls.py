@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from mysite import views
 from django.conf import settings
+# for filer
+from django.conf.urls.static import static
 
 # use django auth login setting
 admin.site.site_header = '我的網站header'
@@ -32,6 +34,11 @@ urlpatterns = [
     path('userinfo/', views.userinfo, name='userinfo'),
     path('accounts/', include('registration.backends.default.urls')),
     # path('accounts/', include('allauth.urls')),
-    
+    # for product list
+    path('product/<int:id>/', views.product, name='product-url'),
+    # for filer
+    path('filer/', include('filer.urls')), 
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
