@@ -16,6 +16,15 @@
     {% endif %}
 
     <div class="row">
+        <div class="col-md-12">
+            {% if request.session.cart.items|length > 0 %} 
+            <p>目前購物車中共有 {{ request.session.cart.items | length }} 項產品</p> 
+            {% endif %}
+            {% for id, item in request.session.cart.items %}
+            <p>{{ item.name }} {{ item.quantity }} 個</p>
+            {% endfor %}
+            {% comment %} {% if user.is_authenticated %} <p><a href='{% url "order-url" %}'>結帳</a></p> {% else %} <p><a href='{% url "login" %}'>登入</a> 後即可結帳</p> %}{% endif %} {% endcomment %}
+        </div>
         {% for product in all_products %}
         <div class="col-md-3">
         {% comment %} <img src="{{ product.image }}" alt="無圖片"> {% endcomment %}
@@ -26,7 +35,13 @@
         </p>
         {{ product.name }}<br>
         {{ product.price }}<br>
-        {{ product.description }}    
+        {{ product.description }}<br>
+        {% if user.is_authenticated %}
+            <button class='btn btn-info' {{ product.stock | yesno:",disabled"}}>
+                <a href='{% url "additem-url" product.id 1 %}'>放入購物車</a>
+        <!--                cart/additem/<int:id>/<int:quantity>/  所以1是quantity -->
+            </button>
+        {% endif %}    
         </div>
         {% endfor %}
 

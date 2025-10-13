@@ -43,8 +43,14 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'filer',
     'mptt',
+    # for cart
+    'cart',
+    
     
 ]
+
+# for cart
+CART_SESSION_ID = 'cart'
 
 # for filer
 THUMBNAIL_HIGH_RESOLUTION = True
@@ -104,6 +110,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # for cart
+                'cart.context_processor.cart_total_amount',
             ],
         },
     },

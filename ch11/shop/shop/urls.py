@@ -38,6 +38,11 @@ urlpatterns = [
     # path('<int:id>/', views.index),
     # for filer
     path('filer/', include('filer.urls')),
+    # for cart
+    path('cart/', views.cart_detail, name='cart'),
+    path('cart/additem/<int:id>/<int:quantity>/', views.add_to_cart, name='additem-url'),
+    path('cart/removeitem/<int:id>/', views.remove_from_cart, name='removeitem-url'),
+    
 
     
 ]
