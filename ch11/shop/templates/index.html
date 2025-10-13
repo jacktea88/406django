@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class='container' align=center>
+    {% comment %} {% if message %}
+    <div class='alert alert-danger'>{{ message }}</div>
+    {% endif %} {% endcomment %}
+    {% for message in messages %}
+    <div class='alert alert-{{message.tags}}'>{{ message }}</div>
+    {% endfor %}
+    <h2>歡迎光臨我的網站</h2>
+    {% if username %}登入成功，歡迎您,{{ username }}
+    {% else %}
+    登入錯誤
+    {% endif %}
+
+</div>
+{% endblock content %}
