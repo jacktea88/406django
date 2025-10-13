@@ -14,3 +14,7 @@ admin.site.register(models.Vote)
 # register for product, category
 admin.site.register(models.Product, ProductAdmin)
 admin.site.register(models.Category)
+
+# for order
+admin.site.register(models.Order)
+admin.site.register(models.OrderItem)

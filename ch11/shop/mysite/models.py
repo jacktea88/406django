@@ -65,3 +65,29 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+# 建立訂單資料表
+class Order(models.Model):
+    user = models.ForeignKey(auth.models.User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=20)
+    address = models.CharField(max_length=200)
+    phone = models.CharField(max_length=15)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    paid = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('-created_at',)
+
+    def __str__(self):
+        return 'Order:{}'.format(self.id)
+    
+# 建立訂單明細資料表
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return '{}'.format(self.id)
