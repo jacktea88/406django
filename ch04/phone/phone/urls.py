@@ -22,4 +22,6 @@ from mysite import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', views.about),
+    path('list/', views.list),
+    path('list/<str:id>/', views.detail),
 ]

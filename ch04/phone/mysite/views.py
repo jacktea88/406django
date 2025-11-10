@@ -1,6 +1,8 @@
 import random
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, Http404
+from mysite.models import Product
+
 # Create your views here.
 
 def about(request):
@@ -27,3 +29,15 @@ def about(request):
 
     # return HttpResponse(html)
     return render(request, 'about.html', locals())
+
+def list(request):
+    products = Product.objects.all()
+    return render(request, 'list.html', locals())
+
+def detail(request, id):
+    try:
+        p = Product.objects.get(id=id)
+    except Product.DoesNotExist:
+        # return HttpResponseNotFound('找不到商品')
+        raise Http404('找不到商品')
+    return render(request, 'detail.html', locals())
