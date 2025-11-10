@@ -1528,3 +1528,15 @@ ch04/phone/mysite/__pycache__/models.cpython-313.pyc
 ch04/phone/mysite/migrations/__pycache__/0001_initial.cpython-313.pyc
 ch04/phone/mysite/migrations/__pycache__/0002_product.cpython-313.pyc
 ch04/phone/mysite/__pycache__/models.cpython-313.pyc
+ch04/phone/mysite/__pycache__/__init__.cpython-314.pyc
+ch04/phone/mysite/__pycache__/admin.cpython-314.pyc
+ch04/phone/mysite/__pycache__/apps.cpython-314.pyc
+ch04/phone/mysite/__pycache__/models.cpython-314.pyc
+ch04/phone/mysite/__pycache__/views.cpython-314.pyc
+ch04/phone/mysite/migrations/__pycache__/__init__.cpython-314.pyc
+ch04/phone/mysite/migrations/__pycache__/0001_initial.cpython-314.pyc
+ch04/phone/mysite/migrations/__pycache__/0002_product.cpython-314.pyc
+ch04/phone/phone/__pycache__/__init__.cpython-314.pyc
+ch04/phone/phone/__pycache__/settings.cpython-314.pyc
+ch04/phone/phone/__pycache__/urls.cpython-314.pyc
+ch04/phone/phone/__pycache__/wsgi.cpython-314.pyc
