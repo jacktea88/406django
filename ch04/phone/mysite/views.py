@@ -17,4 +17,5 @@ def about(request):
 </body>
 </html>
     '''
-    return HttpResponse(html)
+    # return HttpResponse(html)
+    return render(request, 'about.html')
