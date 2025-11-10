@@ -1524,3 +1524,7 @@ ch10/reg/reg/__pycache__/wsgi.cpython-313.pyc
 ch11/shop/mysite/__pycache__/forms.cpython-313.pyc
 ch11/shop/mysite/__pycache__/views.cpython-313.pyc
 ch11/shop/shop/__pycache__/urls.cpython-313.pyc
+ch04/phone/mysite/__pycache__/models.cpython-313.pyc
+ch04/phone/mysite/migrations/__pycache__/0001_initial.cpython-313.pyc
+ch04/phone/mysite/migrations/__pycache__/0002_product.cpython-313.pyc
+ch04/phone/mysite/__pycache__/models.cpython-313.pyc
