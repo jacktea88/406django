@@ -16,11 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from mysite.views import index, book_list, book_detail, books_by_category, books_by_author
+from mysite.views import index, book_list, book_detail, books_by_category, books_by_author, about, about2
+
+about_patterns = [
+    path('about/', about, name='about_url'),
+    path('about/<int:author_no>/', about, name='about_no_url', ),
+    path('about2/', about2, {'author': 'joe'}, name='about2_url', ),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    # about url
+    # path('about/', about, name='about_url'),
+    # path('about/<int:author_no>/', about, name='about_url', ),
+    # path('about2/', about2, {'author': 'joe'}, name='about2_url', ),
+    path('authors/', include(about_patterns)),
+    # 習題一、二
     path('books/', book_list, name='book_list'),
     path('detail/<int:book_id>/', book_detail, name='detail'),
     path('category/<str:category_name>/', books_by_category, name='category'),

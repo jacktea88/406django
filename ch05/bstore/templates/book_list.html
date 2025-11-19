@@ -13,7 +13,7 @@
             {% for book in books %}
             <li>
                 {{ book.id }} {{ book.title }} {{ book.author }}
-                {% comment %} <a href="{% url 'book_list' book.id %}">{{ book.title }}</a> {% endcomment %}
+                <a href="{% url 'detail' book.id %}">{{ book.title }}</a>
             </li>
             {% endfor %}
         </ul>

@@ -1,9 +1,23 @@
 from django.http import Http404, JsonResponse
 from django.shortcuts import render
+from django.urls import reverse
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+
+def about(request, author_no=1):
+    # 先demo沒有預設值時會產生error
+    print('url about:', reverse('about_url'))
+    print('url about_no:', reverse('about_no_url', args=[author_no]))
+
+    return render(request, 'about.html', locals())
+
+# 用url參數來傳遞author
+def about2(request, author):
+    print('url about2:', reverse('about2_url'))
+    return render(request, 'about.html', locals())
+
 
 def book_list(request):
     # 模擬書籍資料
@@ -47,10 +61,20 @@ MOCK_BOOKS = [
 
 def book_detail(request, book_id):
     try:
-        book = next(book for book in MOCK_BOOKS if book['id'] == book_id)
+        # 兩種寫法，檢查書籍是否存在
+        # book = next(book for book in MOCK_BOOKS if book['id'] == book_id)
+        for book in MOCK_BOOKS:
+            print('book:', book)
+            if book['id'] == book_id:
+                break
+            else:
+                book = None
+        if book == None:
+            raise StopIteration
     except StopIteration:
         raise Http404(f"書籍 ID: {book_id} 的書籍不存在")
     
+    # context可以不用
     context = {
         'book': book,
         'page_title': book['title']
@@ -58,6 +82,7 @@ def book_detail(request, book_id):
     return render(request, 'book_detail.html', locals())
 
 def books_by_author(request, author_slug):
+    # 簡化寫法，下面有一般寫法
     filtered_books = [
         book for book in MOCK_BOOKS 
         if book['author_slug'] == author_slug

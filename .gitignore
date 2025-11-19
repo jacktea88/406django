@@ -1540,3 +1540,14 @@ ch04/phone/phone/__pycache__/__init__.cpython-314.pyc
 ch04/phone/phone/__pycache__/settings.cpython-314.pyc
 ch04/phone/phone/__pycache__/urls.cpython-314.pyc
 ch04/phone/phone/__pycache__/wsgi.cpython-314.pyc
+ch05/bstore/api/migrations/__pycache__/__init__.cpython-313.pyc
+ch05/bstore/bstore/__pycache__/__init__.cpython-313.pyc
+ch05/bstore/bstore/__pycache__/settings.cpython-313.pyc
+ch05/bstore/bstore/__pycache__/urls.cpython-313.pyc
+ch05/bstore/bstore/__pycache__/wsgi.cpython-313.pyc
+ch05/bstore/mysite/__pycache__/__init__.cpython-313.pyc
+ch05/bstore/mysite/__pycache__/admin.cpython-313.pyc
+ch05/bstore/mysite/__pycache__/apps.cpython-313.pyc
+ch05/bstore/mysite/__pycache__/models.cpython-313.pyc
+ch05/bstore/mysite/__pycache__/views.cpython-313.pyc
+ch05/bstore/mysite/migrations/__pycache__/__init__.cpython-313.pyc
