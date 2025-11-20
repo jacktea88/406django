@@ -4,6 +4,7 @@ from mysite.views import index, index_api
 from api import views
 
 urlpatterns = [
+    # API根路徑首頁
     path('', views.index_api, name='index_api'),
     # GET http://127.0.0.1:8000/api/books/ - 取得所有書籍
     # GET http://127.0.0.1:8000/api/books/?category=1 - 取得分類為1的書籍

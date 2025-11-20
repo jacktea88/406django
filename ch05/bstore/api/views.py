@@ -42,6 +42,7 @@ def  find_category_by_id(category_id):
             return category
     return None
 
+# ===== API首頁列表 =====
 def index_api(request):
     return JsonResponse({
         "message": "BOOK STORE API",
@@ -59,25 +60,44 @@ def index_api(request):
         })
     # return render(request, 'index-bak.html')
 
+# ===== 測試用：API首頁列表 =====
+# def index_api(request):
+#     return JsonResponse({
+#         "message": "Hello World!"
+        
+#         })
+
 @csrf_exempt
 def books_list(request):
     #GET http://127.0.0.1:8000/api/books/?category=1 - 取得分類為1的書籍 
     #POST http://127.0.0.1:8000/api/books/ - 新增書籍
+    # Unicode編碼對應的中文字符
     #{"id": 1, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 900, "category_id": 1}  
     books = BOOKS_DATA.copy()
     # print('request:', request)
     # print('request.method:', request, request.method)
+    # ===== 查詢參數處理 =====
     if request.method == 'GET':
         category = request.GET.get('category')
         search = request.GET.get('search')
         if category:
             print('category:', category)
+            books_category = []
             try:
                 category = int(category)
-                books = [book for book in books if book['category_id'] == int(category)]
+                # books = [book for book in books if book['category_id'] == int(category)]
+                for book in books:
+                    print('book:', book)
+                    if book['category_id'] == int(category):
+                        books_category.append(book)
+                        print('books_category:', books_category)
+                
+                books = books_category
+
             except ValueError:
                 raise Http404
         
+        # 可省略，與上面雷同
         if search:
             print('search:', search)
             books = [book for book in books if search.lower() in book['title'].lower()]
@@ -105,7 +125,7 @@ def books_list(request):
                 'message': '請提供正確的JSON格式資料'
             }, status=400)
 
-
+    # ===== 一般顯示所有書籍列表，無查詢的回應資料 =====
     return JsonResponse({"books": books})
 
 @csrf_exempt
@@ -115,6 +135,8 @@ def book_detail(request, book_id):
     # PUT http://127.0.0.1:8000/api/books/1/ - 更新書籍  
     # DELETE http://127.0.0.1:8000/api/books/1/ - 刪除書籍
     """
+    # 更新id=2的書籍，所以id=2的書籍會改成下面這內容
+    # {"id": 2, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 1200, "category_id": 1}
     book = fine_book_by_id(book_id)
     print('book:', book)
     if not book:
@@ -189,7 +211,7 @@ def book_reviews(request, book_id):
     else:
         return JsonResponse({'error': '不支援的請求方法'}, status=405)
     
-
+# 以下也可略，功能與上面雷同
 def categories_list(request):
     """分類列表端點
     http://localhost:8000/api/categories/

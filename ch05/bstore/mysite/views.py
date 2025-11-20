@@ -83,11 +83,19 @@ def book_detail(request, book_id):
 
 def books_by_author(request, author_slug):
     # 簡化寫法，下面有一般寫法
-    filtered_books = [
-        book for book in MOCK_BOOKS 
-        if book['author_slug'] == author_slug
-    ]
+    # filtered_books = [
+    #     book for book in MOCK_BOOKS 
+    #     if book['author_slug'] == author_slug
+    # ]
     
+    # 一般寫法
+    filtered_books = []
+    for book in MOCK_BOOKS:
+        if book['author_slug'] == author_slug:
+            filtered_books.append(book)
+    
+    
+
     if not filtered_books:
         raise Http404(f"作者 '{author_slug}' 不存在或無書籍")
     
