@@ -31,10 +31,15 @@ def fine_book_by_id(book_id):
     return None
 
 def get_reviews_by_book_id(book_id):
+    allreviews = []
+    print('REVIEWS_DATA:', REVIEWS_DATA)
     for review in REVIEWS_DATA:
         if review['book_id'] == book_id:
-            return review
-    return None
+            allreviews.append(review)
+            print('allreviews:', allreviews)
+    if not allreviews:
+        return None
+    return allreviews
 
 def  find_category_by_id(category_id):
     for category in CATEGORIES_DATA:
@@ -76,11 +81,12 @@ def books_list(request):
     books = BOOKS_DATA.copy()
     # print('request:', request)
     # print('request.method:', request, request.method)
-    # ===== 查詢參數處理 =====
+    
+    # step 2: ===== 查詢參數處理 (GET with query)=====
     if request.method == 'GET':
         category = request.GET.get('category')
         search = request.GET.get('search')
-        if category:
+        if category: # query by category id
             print('category:', category)
             books_category = []
             try:
@@ -98,11 +104,12 @@ def books_list(request):
                 raise Http404
         
         # 可省略，與上面雷同
-        if search:
+        if search:  # query by book title
             print('search:', search)
             books = [book for book in books if search.lower() in book['title'].lower()]
             print('books:', books)
-        
+
+    # step 3: ===== 新增書籍 (POST)=====
     if request.method == 'POST':
         print('request.POST:', request.POST)
         try:
@@ -125,7 +132,7 @@ def books_list(request):
                 'message': '請提供正確的JSON格式資料'
             }, status=400)
 
-    # ===== 一般顯示所有書籍列表，無查詢的回應資料 =====
+    # step 1: (GET)===== 一般顯示所有書籍列表，無特定查詢條件的回應資料 =====
     return JsonResponse({"books": books})
 
 @csrf_exempt
@@ -193,10 +200,12 @@ def book_reviews(request, book_id):
                 'user': data['user']
             }
             REVIEWS_DATA.append(new_review)
+            print('REVIEWS_DATA:', REVIEWS_DATA)
             return JsonResponse({
                 'message': '評論新增成功',
                 'review': new_review
             })
+        
         except json.JSONDecodeError:
             return JsonResponse({
                 'message': '請提供正確的JSON格式資料'
@@ -222,11 +231,11 @@ def category_detail(request, category_id):
     """特定分類書籍端點
     http://localhost:8000/api/categories/1/
     """
-    category = find_category_by_id(category_id)
+    category = find_category_by_id(category_id) #從分類資料表中找到特定分類，確認是否有此分類
     if not category:
         return JsonResponse({'error': 'Category not found'}, status=404)
     
-    # 取得該分類的書籍
+    # 若有此分類，則再取得該分類的所有書籍資料
     books = [book for book in BOOKS_DATA if book['category_id'] == category_id]
     
     return JsonResponse({

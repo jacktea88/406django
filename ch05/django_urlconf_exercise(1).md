@@ -62,6 +62,16 @@ REVIEWS_DATA = [
     {'id': 3, 'book_id': 2, 'rating': 5, 'comment': 'Django入門首選', 'user': '讀者C'},
 ]
 
+#####  遠端用API發送測試用的書籍資料
+
+###### POST http://127.0.0.1:8000/api/books/ - 新增書籍
+Unicode編碼對應的中文字符
+{"id": 1, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 900, "category_id": 1}  
+
+###### PUT http://127.0.0.1:8000/api/books/1/ - 更新書籍
+更新id=2的書籍，所以id=2的書籍會改成下面這內容
+{"id": 2, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 1200, "category_id": 1}
+
 ---
 
 ## 第一部分：基礎URL配置
