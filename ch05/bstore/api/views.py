@@ -74,10 +74,13 @@ def index_api(request):
 
 @csrf_exempt
 def books_list(request):
+    #GET http://127.0.0.1:8000/api/books/ - 取得所有書籍
     #GET http://127.0.0.1:8000/api/books/?category=1 - 取得分類為1的書籍 
     #POST http://127.0.0.1:8000/api/books/ - 新增書籍
     # Unicode編碼對應的中文字符
-    #{"id": 1, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 900, "category_id": 1}  
+    #{"id": 1, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 900, "category_id": 1}
+    #{"id": 1, "title": "Python程式設計", "author": "王小明", "price": 450, "category_id": 1}   
+    #{"id": 1, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
     books = BOOKS_DATA.copy()
     # print('request:', request)
     # print('request.method:', request, request.method)
@@ -144,6 +147,7 @@ def book_detail(request, book_id):
     """
     # 更新id=2的書籍，所以id=2的書籍會改成下面這內容
     # {"id": 2, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 1200, "category_id": 1}
+    # {"id": 2, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
     book = fine_book_by_id(book_id)
     print('book:', book)
     if not book:

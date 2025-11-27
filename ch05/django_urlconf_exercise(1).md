@@ -67,11 +67,13 @@ REVIEWS_DATA = [
 ###### POST http://127.0.0.1:8000/api/books/ - 新增書籍
 Unicode編碼對應的中文字符
 {"id": 1, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 900, "category_id": 1}  
+{"id": 1, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
+
 
 ###### PUT http://127.0.0.1:8000/api/books/1/ - 更新書籍
 更新id=2的書籍，所以id=2的書籍會改成下面這內容
 {"id": 2, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 1200, "category_id": 1}
-
+{"id": 2, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
 ---
 
 ## 第一部分：基礎URL配置
