@@ -19,7 +19,6 @@ urlpatterns = [
 
     # GET http://127.0.0.1:8000/api/books/1/reviews/ - 取得書籍評論
     # POST http://127.0.0.1:8000/api/books/1/reviews/ - 新增評論
-    # DELETE http://127.0.0.1:8000/api/books/1/reviews/ - 刪除評論
     path('books/<int:book_id>/reviews/', views.book_reviews, name='book_reviews'),
 
     # GET http://127.0.0.1:8000/api/categories/ - 取得所有分類

@@ -41,6 +41,9 @@ def get_reviews_by_book_id(book_id):
         return None
     return allreviews
 
+
+
+
 def  find_category_by_id(category_id):
     for category in CATEGORIES_DATA:
         if category['id'] == category_id:
@@ -214,13 +217,15 @@ def book_reviews(request, book_id):
             return JsonResponse({
                 'message': '請提供正確的JSON格式資料'
             }, status=400)
-    elif request.method == 'DELETE':
-        reviews = get_reviews_by_book_id(book_id)
-        print('REVIEWS_DATA:', REVIEWS_DATA)
-        REVIEWS_DATA.remove(reviews)
-        return JsonResponse({
-            'message': '評論刪除成功'
-        })
+    # 不支援刪除review，因為可能有多筆review，但一次只能刪一筆
+    # elif request.method == 'DELETE':
+    #     # 這個會回傳多筆評論，且是一個list，無法用.remove(reviews)來刪除
+    #     reviews = get_reviews_by_book_id(book_id)
+    #     print('REVIEWS_DATA:', REVIEWS_DATA)
+    #     REVIEWS_DATA.remove(reviews) # 這行程式碼執行會有問題
+    #     return JsonResponse({
+    #         'message': '評論刪除成功'
+    #     })
     else:
         return JsonResponse({'error': '不支援的請求方法'}, status=405)
     
