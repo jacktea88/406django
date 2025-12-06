@@ -20,9 +20,12 @@
         
             <tr><td align=center>
         
-            {% comment %} <img src='{{ image.url }}' width=350><br> {% endcomment %}
+            <h5>image.url = {{ image.url }}</h5><br>
+            <img src='{{ image.url }}' width=350><br>
+            {% comment %} <h5>"/media/z301.jpg"</h5><br> {% endcomment %}
             {% comment %} <img src="/media/z301.jpg" width=350><br> {% endcomment %}
-            <img src="/media/{{image.description}}" width=350><br>
+            <h5>/media/image.media = /media/{{image.media}} </h5><br>
+            <img src="/media/{{image.media}}" width=350><br>
         
         
     {% empty %}

@@ -1553,3 +1553,4 @@ ch05/bstore/mysite/__pycache__/views.cpython-313.pyc
 ch05/bstore/mysite/migrations/__pycache__/__init__.cpython-313.pyc
 ch07/dborm/mysite/__pycache__/views.cpython-313.pyc
 ch07/dborm/mysite/migrations/__pycache__/0001_initial.cpython-313.pyc
+ch07/dborm/mysite/migrations/__pycache__/0002_pphoto_media_alter_product_description_and_more.cpython-313.pyc

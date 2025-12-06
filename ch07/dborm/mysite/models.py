@@ -28,5 +28,6 @@ class PPhoto(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     description = models.CharField(max_length=20, default='產品照片')
     url = models.URLField()
+    media = models.CharField(max_length=100, default='', verbose_name='圖片檔名')
     def __str__(self):
         return self.description
