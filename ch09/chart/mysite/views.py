@@ -164,7 +164,7 @@ def logout(request):
 # votes table
 def votes(request):
     data = Vote.objects.all().order_by('name')
-    return render(request, 'votes.html', locals())
+    # return render(request, 'votes.html', locals())
     return render(request, 'votes_table.html', locals())
 
 # use plotly
