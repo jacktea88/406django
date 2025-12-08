@@ -124,6 +124,9 @@ def contact(request):
         else:
             message = '請檢查您的輸入'
             print(message)
+    else:  # GET
+        form = forms.ContactForm()
+        message = '如要寫信給管理員，請留下您的聯絡資訊...'
     return render(request, 'contact.html', locals())
 
 def post2db(request):
