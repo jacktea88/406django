@@ -38,7 +38,6 @@ python manage.py startapp mysite
 ## 4. 啟動開發伺服器
 
 ``` bash
-cd mysite
 python manage.py runserver
 ```
 
