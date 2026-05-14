@@ -18,7 +18,7 @@ def about2(request, author):
     print('url about2:', reverse('about2_url'))
     return render(request, 'about.html', locals())
 
-
+# 習題一：書籍列表頁面
 def book_list(request):
     # 模擬書籍資料
     books = [
