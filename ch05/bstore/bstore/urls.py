@@ -34,6 +34,8 @@ urlpatterns = [
     path('authors/', include(about_patterns)),
     # 習題一、二
     path('books/', book_list, name='book_list'),
+    path("books/<int:book_id>/", book_list, name="book_list"), # 注意要有這行，否則用反解會有問題，因為它有用到book.id
+    # <a href="{% url 'book_list' book.id %}">{{ book.title }}</a>
     path('detail/<int:book_id>/', book_detail, name='detail'),
     path('category/<str:category_name>/', books_by_category, name='category'),
     path('author/<slug:author_slug>/', books_by_author, name='author'),
