@@ -13,5 +13,12 @@
     <a href="{% url 'about_url' %}">basic about</a> <br>
     <a href="{% url 'about_no_url' author_no %}">author no's about</a> <br>
     <a href="{% url 'about2_url' %}">joe's about</a>
+
+    {% comment %} 反解析URL的好處是：當URL路徑改變時，使用反解析的地方不需要修改，因為它是根據URL名稱來尋找對應的URL路徑的。 {% endcomment %}
+    {% comment %} 反解析URL的壞處是：如果URL名稱改變了，使用反解析的地方就需要修改，因為它是根據URL名稱來尋找對應的URL路徑的。 {% endcomment %}
+    <hr>
+    <a href="{% url "post_url" yr mo day %}">Post反解析加參數</a>
+    <br>
+    <a href="{% url "post_url" 2026 1 1 %}">Post反解析加"自訂"參數</a>
 </body>
 </html>
