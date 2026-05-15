@@ -123,6 +123,12 @@ def books_by_category(request, category_name):
     print('filtered_books:', filtered_books)
     return render(request, 'category.html', locals())
 
+# 反解析URL的view
+def post(request, yr, mo, day):
+    return render(request, 'about.html', {'yr': yr, 'mo': mo, 'day': day})
+
+
+# 習題三：API端點 (其他的在api/views.py中)
 def index_api(request):
     return JsonResponse({"message": "Hello World!"})
     # return render(request, 'index_api.html')
