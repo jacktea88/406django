@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from mysite.views import index, book_list, book_detail, books_by_category, books_by_author, about, about2
+from mysite.views import index, book_list, book_detail, books_by_category, books_by_author, about, about2, post
 
 about_patterns = [
     path('about/', about, name='about_url'),
@@ -37,6 +37,9 @@ urlpatterns = [
     path('detail/<int:book_id>/', book_detail, name='detail'),
     path('category/<str:category_name>/', books_by_category, name='category'),
     path('author/<slug:author_slug>/', books_by_author, name='author'),
+    # 反解析URL
+    path("post/<int:yr>/<int:mo>/<int:day>/", post, name="post_url"),
+
     # for API
     path('api/', include('api.urls')),
 
