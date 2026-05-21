@@ -39,7 +39,7 @@ urlpatterns = [
     path('detail/<int:book_id>/', book_detail, name='detail'),
     path('category/<str:category_name>/', books_by_category, name='category'),
     path('author/<slug:author_slug>/', books_by_author, name='author'),
-    # 反解析URL
+    # 反解析URL範例
     path("post/<int:yr>/<int:mo>/<int:day>/", post, name="post_url"),
 
     # for API

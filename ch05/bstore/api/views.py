@@ -3,6 +3,9 @@ from django.shortcuts import render
 import json
 from django.views.decorators.csrf import csrf_exempt
 
+# Global database 相當於存在記憶體中的資料庫，
+# 實際上是用Python的list來模擬資料庫的功能，
+# 這樣就不需要設定真正的資料庫了，適合用來測試API功能。
 
 BOOKS_DATA = [
     {'id': 1, 'title': 'Python程式設計', 'author': '王小明', 'price': 450, 'category_id': 1},
@@ -23,8 +26,8 @@ REVIEWS_DATA = [
     {'id': 3, 'book_id': 2, 'rating': 5, 'comment': 'Django入門首選', 'user': '讀者C'},
 ]
 
-# ===== 共用的輔助函數 =====
-def fine_book_by_id(book_id):
+# ===== 習題三共用的輔助函數 =====
+def find_book_by_id(book_id):
     for book in BOOKS_DATA:
         if book['id'] == book_id:
             return book
@@ -75,7 +78,8 @@ def index_api(request):
         
 #         })
 
-@csrf_exempt
+# 先demo沒有設定@csrf_exempt的情況，會有CSRF驗證失敗的錯誤，然後再加上@csrf_exempt來解決這個問題。
+@csrf_exempt    # 防止跨站請求攻擊
 def books_list(request):
     #GET http://127.0.0.1:8000/api/books/ - 取得所有書籍
     #GET http://127.0.0.1:8000/api/books/?category=1 - 取得分類為1的書籍 
@@ -84,7 +88,12 @@ def books_list(request):
     #{"id": 1, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 900, "category_id": 1}
     #{"id": 1, "title": "Python程式設計", "author": "王小明", "price": 450, "category_id": 1}   
     #{"id": 1, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
-    books = BOOKS_DATA.copy()
+    
+    # step 1: ===== 一般顯示所有書籍列表，無特定查詢條件的回應資料 =====
+    books = BOOKS_DATA.copy() # 直接return BOOKS_DATA 即可 
+    # 相當於從資料庫中取出所有書籍資料，並複製一份到books變數中，
+    # 這樣就不會直接修改到全域的BOOKS_DATA了。
+    
     # print('request:', request)
     # print('request.method:', request, request.method)
     
@@ -112,7 +121,13 @@ def books_list(request):
         # 可省略，與上面雷同
         if search:  # query by book title
             print('search:', search)
-            books = [book for book in books if search.lower() in book['title'].lower()]
+            # books = [book for book in books if search.lower() in book['title'].lower()]
+            
+            books_search = []
+            for book in books:
+                if search.lower() in book['title'].lower():
+                    books_search.append(book)
+            books = books_search
             print('books:', books)
 
     # step 3: ===== 新增書籍 (POST)=====
@@ -178,6 +193,8 @@ def book_detail(request, book_id):
             'message': '書籍刪除成功'
         })
     
+# ===== 書籍評論端點 =====
+# 可讓學生參考以上兩個端點的寫法，來實作書籍評論的GET和POST功能，DELETE功能可略，因為可能有多筆評論，但一次只能刪一筆。
 @csrf_exempt
 def book_reviews(request, book_id):
     """書籍評論端點
@@ -185,7 +202,7 @@ def book_reviews(request, book_id):
     POST http://127.0.0.1:8000/api/books/1/reviews/ - 新增特定書籍的評論
     DELETE http://127.0.0.1:8000/api/books/1/reviews/ - 刪除特定書籍的評論
     """
-    book = fine_book_by_id(book_id)
+    book = find_book_by_id(book_id)
     if not book:
             return JsonResponse({'error': '書籍不存在'}, status=404)
         
@@ -245,7 +262,7 @@ def category_detail(request, category_id):
         return JsonResponse({'error': 'Category not found'}, status=404)
     
     # 若有此分類，則再取得該分類的所有書籍資料
-    books = [book for book in BOOKS_DATA if book['category_id'] == category_id]
+    # books = [book for book in BOOKS_DATA if book['category_id'] == category_id]
     
     return JsonResponse({
         'category': category,

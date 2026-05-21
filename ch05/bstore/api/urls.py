@@ -19,10 +19,10 @@ urlpatterns = [
 
     # GET http://127.0.0.1:8000/api/books/1/reviews/ - 取得書籍評論
     # POST http://127.0.0.1:8000/api/books/1/reviews/ - 新增評論
-    path('books/<int:book_id>/reviews/', views.book_reviews, name='book_reviews'),
+    # path('books/<int:book_id>/reviews/', views.book_reviews, name='book_reviews'),
 
     # GET http://127.0.0.1:8000/api/categories/ - 取得所有分類
-    path('categories/', views.categories_list, name='categories_list'),
+    # path('categories/', views.categories_list, name='categories_list'),
 
     # GET http://127.0.0.1:8000/api/categories/1/ - 取得特定分類
     path('categories/<int:category_id>/', views.category_detail, name='category_detail'),

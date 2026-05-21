@@ -64,7 +64,7 @@ def book_detail(request, book_id):
         # 兩種寫法，檢查書籍是否存在
         # book = next(book for book in MOCK_BOOKS if book['id'] == book_id)
         for book in MOCK_BOOKS:
-            print('book:', book)
+            # print('book:', book)
             if book['id'] == book_id:
                 break
             else:
