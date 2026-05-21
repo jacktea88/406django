@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block headermsg %}
+<h1>這是唐詩欣賞的部落格 by template</h1>
+{% endblock headermsg %}
+
+
+
+{% block content %}
+    <h2 class="mt-4">最新文章</h2>
+        {% for post in posts %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    {% comment %} <h3 class="card-title">{{ post.title }}</h3> {% endcomment %}
+                    <h3 class="card-title"><a href="/post/{{post.slug}}">{{ post.title }}</a></h3>
+                    <p class="card-text">{{ post.body }}</p>
+                    <p class="card-text"><small class="text-muted">發布於 {{ post.pub_date }}</small></p>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted">目前沒有文章。</p>
+        {% endfor %}
+{% endblock content %}
