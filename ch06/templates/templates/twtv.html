@@ -18,8 +18,11 @@
         <h2>早安</h2>
     {% endif %}
     <div>
-        <iframe src="https://www.youtube.com/embed/{{ tv.tvcode }}" frameborder="0"></iframe>
+        <!-- <iframe src="https://www.youtube.com/embed/{{ tv.tvcode }}" frameborder="0"></iframe> -->
+        <iframe width="640" height="480" src="https://tw.live/cam/?id={{ tv.tvcode }}" frameborder="0"></iframe>
     </div>
     
 </div>
 {% endblock content %}
+
+    

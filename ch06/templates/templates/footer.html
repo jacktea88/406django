@@ -1,1 +1,7 @@
 <h3>this is footer in footer.html</h3>
+
+{% comment %} 以下這段內容會無條件出現在所有引用footer.html的頁面中，因為footer.html被base_tv.html引用了，而base_tv.html又被twtv.html引用了，所以twtv.html也會出現footer.html的內容。 {% endcomment %}
+{% comment %} 要如何避免這個問題呢？(測試無用??)可以在footer.html中使用block來定義一個區塊，然後在twtv.html中覆寫這個區塊的內容，這樣就可以避免footer.html的內容無條件出現在twtv.html中。 {% endcomment %}
+{% block footer %}
+<h4>this is footer content in block of footer.html</h4>
+{% endblock footer %}

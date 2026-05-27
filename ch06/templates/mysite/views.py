@@ -9,8 +9,9 @@ def index(request):
 def twtv(request, tv_id=0):
     print('tv_id:', tv_id)
     tv_list = [{'name':'公視', 'tvcode':'4RoJ8pxQWTk'},
-        {'name':'非凡', 'tvcode':'pDvz-qnGhWI'},
-        {'name':'民視', 'tvcode':'ylYJSBUgaMA'},
+        # {'name':'非凡', 'tvcode':'pDvz-qnGhWI'},
+        {'name':'非凡', 'tvcode':'YOn74CNmyD8'},
+        {'name':'民視', 'tvcode':'CCTV-N1-N-250.500-M'},
         {'name':'中視', 'tvcode':'TCnaIE_SAtM'},]
     tv = tv_list[tv_id]
 
