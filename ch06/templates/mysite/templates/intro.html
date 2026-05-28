@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK"
+      crossorigin="anonymous"
+    ></script>
+    <title>GoPower-運動健身-課程介紹</title>
+    <style>
+      #p1,
+      #p2,
+      #p3,
+      #p4 {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 65vh;
+      }
+      #p1 {
+        background-image: url("images/gym1.png");
+      }
+      #p2 {
+        background-image: url("images/gym2.png");
+      }
+      #p3 {
+        background-image: url("images/gym3.png");
+      }
+      #p4 {
+        background-image: url("images/gym4.png");
+      }
+      .imgEffect {
+        opacity: 0.35; /*透明度*/
+        transition: all 0.5s;
+      }
+      .imgEffect:hover {
+        opacity: 1;
+        cursor: pointer;
+        transform: scale(0.9, 0.9);
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <!-- .navbar>h1{Go Power}+button+.collapse>ul>(li>a)*3 -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top px-3 navBg">
+      <h1 class="navbar-brand">GoPower</h1>
+      <button data-toggle="collapse" data-target="#menu" class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse justify-content-end" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">GoPower首頁</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">關於我們</a>
+          </li>
+          <li class="nav-item">
+            <a href="intro.html" class="nav-link text-warning disabled">課程資訊</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <!-- BANNER 一列一欄的圖片輪播 -->
+      <div class="row">
+        <div class="col">
+          <!-- 輪播照片秀 -->
+          <!-- .carousel.slide>.carousel-inner>.carousel-item*4 -->
+          <div class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" id="p1"></div>
+              <div class="carousel-item" id="p2"></div>
+              <div class="carousel-item" id="p3"></div>
+              <div class="carousel-item" id="p4"></div>
+            </div>
+            <!-- 按鈕控制切換by ai -->
+            <button class="carousel-control-prev" type="button" data-bs-target=".carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target=".carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- 課程介紹共六個 -->
+      <!-- 第一列三欄 -->
+      <div class="row d-flex justify-content-center my-5">
+        <div class="col-12 col-md-3 pb-5 text-center">
+          <!-- img+h2+p+a -->
+          <img
+            src="images/workout2.jpg"
+            alt=""
+            class="img-fluid imgEffect"
+            data-bs-toggle="modal"
+            data-bs-target="#c1"
+          />
+          <h2 class="h5 text-info mt-2 mb-0">基礎體重訓練</h2>
+          <p class="mt-0 text-white">基本的四肢運動養成</p>
+          <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#c1"
+            >前往</a
+          >
+        </div>
+        <div class="col-12 col-md-3 pb-5 text-center">
+          <img
+            src="images/workout3.jpg"
+            alt=""
+            class="img-fluid imgEffect"
+            data-bs-toggle="modal"
+            data-bs-target="#c2"
+          />
+          <h2 class="h5 text-info mt-2 mb-0">飛輪運動教室</h2>
+          <p class="mt-0 text-white">訓練腳步最基本耐力</p>
+          <a
+            href=""
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#c2"
+            >前往</a
+          >
+        </div>
+        <div class="col-12 col-md-3 pb-5 text-center">
+          <img
+            src="images/workout5.jpg"
+            alt=""
+            class="img-fluid imgEffect"
+            data-bs-toggle="modal"
+            data-bs-target="#c3"
+          />
+          <h2 class="h5 text-info mt-2 mb-0">地板運動操</h2>
+          <p class="mt-0 text-white">讓身體柔軟與訓練反應</p>
+          <a
+            href=""
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#c3"
+            >前往</a
+          >
+        </div>
+      </div>
+
+      <!-- 第二列三欄 -->
+      <div class="row d-flex justify-content-center my-5">
+        <div class="col-12 col-md-3 pb-5 text-center">
+          <!-- img+h2+p+a -->
+          <img
+            src="images/workout6.jpg"
+            alt=""
+            class="img-fluid imgEffect"
+            data-bs-toggle="modal"
+            data-bs-target="#c4"
+          />
+          <h2 class="h5 text-info mt-2 mb-0">進階地板運動操</h2>
+          <p class="mt-0 text-white">養成肌肉的收放與彈性</p>
+          <a
+            href=""
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#c4"
+            >前往</a
+          >
+        </div>
+        <div class="col-12 col-md-3 pb-5 text-center">
+          <img
+            src="images/workout7.jpg"
+            alt=""
+            class="img-fluid imgEffect"
+            data-bs-toggle="modal"
+            data-bs-target="#c5"
+          />
+          <h2 class="h5 text-info mt-2 mb-0">輔助器具操作</h2>
+          <p class="mt-0 text-white">培養身體的耐壓力</p>
+          <a
+            href=""
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#c5"
+            >前往</a
+          >
+        </div>
+        <div class="col-12 col-md-3 pb-5 text-center">
+          <img
+            src="images/workout9.jpg"
+            alt=""
+            class="img-fluid imgEffect"
+            data-bs-toggle="modal"
+            data-bs-target="#c6"
+          />
+          <h2 class="h5 text-info mt-2 mb-0">風火輪鍛鍊</h2>
+          <p class="mt-0 text-white">進階的腳步肌耐力養成</p>
+          <a
+            href=""
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#c6"
+            >前往</a
+          >
+        </div>
+      </div>
+
+      <!-- footer列：一列三欄 -->
+      <div class="row text-center text-secondary mt-5">
+        <div class="col-12 col-md-4 my-3">
+          <h1 class="h5">網站導覽</h1>
+          <ul class="h6 list-unstyled">
+            <li>首頁</li>
+            <li>關於我們</li>
+            <li>最新活動</li>
+            <li>學員見證</li>
+            <li>服務項目</li>
+            <li>場館介紹</li>
+            <li>健身教學</li>
+            <li>聯絡我們</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 my-3">
+          <h1 class="h5">服務項目</h1>
+          <ul class="h6 list-unstyled">
+            <li>私人教練</li>
+            <li>飲食服務</li>
+            <li>自主入場</li>
+            <li>場租服務</li>
+            <li>線上課程</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 my-3">
+          <h1 class="h5">相關網站</h1>
+          <ul class="h6 list-unstyled">
+            <li>MorePower專業補給站</li>
+            <li>Healthy健康百科</li>
+            <li>FitBody 健身網</li>
+            <li>Eat Food健康餐</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 頁尾列：一列一欄 -->
+      <div class="row mt-5">
+        <div class="col m-0 p-5">
+          <p class="text-center text-white">-GOPOWER FITNESS &copy; 2025-</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 動態資訊框 -->
+    <!-- .modal.fade#c1>.modal-dialog.modal-dialog-centered>.model-content>.modal-body -->
+    <div class="modal fade" id="c1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="model-content">
+          <div class="modal-body bg-white rounded p-2">
+            <img src="images/workout2.jpg" alt="" class="img-fluid" />
+            <h1 class="text-success">基礎體重訓練</h1>
+            <p class="text-secondary">
+              你是否有想過開始運動改變體態？無論是減脂、減重或增加肌耐力！每天只要花10分鐘的時間，你不用買訓練器材只用自己的體重就可以執行，如果你每天都認真執行這樣的計畫，在短時間內就可看到自己身體的改變，但這個訓練不會讓你快速獲得夢想中的身形，尤其是在體重超重的情形之下，不過卻能為你開啟運動的大門。現在就讓我們開始用這5種動作，執行４週的訓練計畫吧！
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="c2">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="model-content">
+          <div class="modal-body bg-white rounded p-2">
+            <img src="images/workout3.jpg" alt="" class="img-fluid" />
+            <h1 class="text-success">飛輪課程介紹：</h1>
+            <p class="text-secondary">
+              飛輪也是一種有氧運動，可以幫助你燃燒脂肪達到減脂的效果，除了燃燒脂肪之外，對於心肺功能的提升及下半身肌力也有很大的幫助。
+              同樣都是有氧運動，相較於跑步來說騎飛輪比較不易受傷，適合於體重過重或是膝蓋有問題不適合跑步的人。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="c3">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="model-content">
+          <div class="modal-body bg-white rounded p-2">
+            <img src="images/workout5.jpg" alt="" class="img-fluid" />
+            <h1 class="text-success">地板運動操:</h1>
+            <p class="text-secondary">
+              提到健身運動，大多數人都想到戶外，其實，在家裡，地板也不錯的運動場地。
+              <br />(1)擁有緊實的大腿：側臥在地板上，屈膝並踩在地板上，保持身體前後平衡，下腿伸直放鬆時置於地板上，用力時上抬並配合吐氣。
+              <br />(2)預防腰痛及臀部訓練：仰臥躺在地板上，彎曲膝蓋，兩腳分開與腰同寬，雙手放在身體兩側，開始吸氣。一邊吐氣，一邊讓臀部用力，來抬高腰部。切記在臀部落下時，不能接觸地板。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="c4">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="model-content">
+          <div class="modal-body bg-white rounded p-2">
+            <img src="images/workout6.jpg" alt="" class="img-fluid" />
+            <h1 class="text-success">進階地板運動操:</h1>
+            <p class="text-secondary">
+              (1)體側腰部運動：身體側坐，單手扶在腦後，另一手置於體側，吸氣。一邊吐氣，一邊抬高腦後手臂的手肘，使體側部位伸直。本動作可以伸展體側兩邊的肌肉，使腰部變細。
+              <br />(2)腹部運動：平躺在地上或床上，雙腿併攏抬高，與地面大約成45度，雙手扶在腦後，運用腹部的力量將頭部及肩膀抬起，同時雙腿併攏向內縮，讓頭部與膝蓋儘量觸碰在一起。這個動作可以有效消除腹部贅肉，收緊上腹部和下腹部的肌肉。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="c5">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="model-content">
+          <div class="modal-body bg-white rounded p-2">
+            <img src="images/workout7.jpg" alt="" class="img-fluid" />
+            <h1 class="text-success">輔助器具操作:</h1>
+            <p class="text-secondary">
+              怎樣才能在健身後更好的拉伸肌肉呢？除了常規的拉伸運動之外，我們還可以利用一些器具來放鬆我們的肌肉，如果在眾多器械中挑一個，首選當然是使用泡沫滾軸啦！
+              泡沫滾軸也可以稱為瑜伽柱，根據運動訓練目的的不同分為三種方法：泡沫軸筋放鬆訓練法、泡沫軸拉伸訓練法和泡沫軸核心力量訓練法。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="c6">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="model-content">
+          <div class="modal-body bg-white rounded p-2">
+            <img src="images/workout9.jpg" alt="" class="img-fluid" />
+            <h1 class="text-success">風火輪鍛鍊:</h1>
+            <p class="text-secondary">
+              首先，風火健腹輪可以起到減肥減脂的作用。主要鍛鍊腹部、小臂、肩部、大腿小腿等，可以讓身體更加有型。
+              其次，能夠有效地訓練到咱們的核心肌肉群。而且不同的動作對身體的各個部位有不同鍛鍊效果，大家鍛鍊時可以針對自己的健身基礎和訓練需求來做動作。
+              有這樣的作用，是因為我們在用它進行鍛鍊的時候，幾乎調用了全身的骨骼在做支撐（會感覺有些難），所以對身體正面的刺激是非常大的。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- 警告動態資訊框 -->
+    <div class="modal fade" id="warning">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded">
+          <div class="modal-body m-0 p-1">
+            <div class="ratio ratio-16x9 rounded">
+              <img src="images/warning.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="js/ctrl.js"></script>
+
+  </body>
+</html>

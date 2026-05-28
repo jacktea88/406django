@@ -1,238 +1,193 @@
-<!-- templates/about.html -->
-{% extends "base_test.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-{% block extra_css %}
-
-    <!-- 額外CSS區塊 -->
-    
-<style>
-    .about-hero {
-        background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(13, 110, 253, 0.8)), 
-                    url('https://via.placeholder.com/1920x600/0d6efd/ffffff?text=About+Us') center/cover;
-        color: white;
-        padding: 5rem 0;
-    }
-    
-    .team-card {
-        transition: transform 0.3s ease;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    
-    .team-card:hover {
-        transform: translateY(-10px);
-    }
-    
-    .team-photo {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border: 4px solid #fff;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-    
-    .timeline {
-        position: relative;
-        padding: 0;
-        list-style: none;
-    }
-    
-    .timeline:before {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 40px;
-        width: 2px;
-        margin-left: -1.5px;
-        content: '';
-        background-color: #e9ecef;
-    }
-    
-    .timeline > li {
-        position: relative;
-        min-height: 50px;
-        margin-bottom: 50px;
-    }
-    
-    .timeline > li:after,
-    .timeline > li:before {
-        content: ' ';
-        display: table;
-    }
-    
-    .timeline > li:after {
-        clear: both;
-    }
-    
-    .timeline > li .timeline-panel {
-        position: relative;
-        float: right;
-        width: calc(100% - 90px);
-        padding: 20px;
-        text-align: left;
-        background: #fff;
-        border: 1px solid #d4edda;
-        border-radius: 8px;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.175);
-    }
-    
-    .timeline > li .timeline-badge {
-        position: absolute;
-        top: 16px;
-        left: 15px;
-        z-index: 100;
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
-        font-size: 1.4em;
-        text-align: center;
-        background-color: #0d6efd;
-        color: #fff;
-        border-radius: 50%;
-    }
-</style>
-{% endblock extra_css %}
-
-{% block content %}
-
-    <!-- 主要內容區域 -->
-    <main class="main-content">
-        
-<!-- 關於我們英雄區塊 -->
-<section class="about-hero text-center">
-    <div class="container">
-        <h1 class="display-4 fw-bold mb-4">關於我們-拆解後</h1>
-        <p class="lead">專業團隊，用心服務，創造價值</p>
-    </div>
-</section>
-
-<!-- 公司介紹 -->
-<section class="py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h2 class="mb-4">我們的使命</h2>
-                <p class="lead">致力於提供最優質的數位解決方案，協助客戶在數位時代中脫穎而出。</p>
-                <p>自2019年成立以來，我們始終秉持著「創新、專業、服務」的核心價值，為超過150家企業提供了專業的網頁設計、APP開發及系統整合服務。我們的團隊擁有豐富的實務經驗，能夠深度理解客戶需求，提供量身訂做的解決方案。</p>
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>專業團隊</h5>
-                        <p>由資深開發者組成的專業團隊</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5><i class="bi bi-check-circle-fill text-success me-2"></i>品質保證</h5>
-                        <p>嚴格的品質控制與測試流程</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center">
-                <img src="https://via.placeholder.com/500x400/f8f9fa/6c757d?text=Company+Image" 
-                     class="img-fluid rounded shadow" alt="公司介紹">
-            </div>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK"
+      crossorigin="anonymous"
+    ></script>
+    <title>GoPower-運動健身-關於我們</title>
+    <style>
+      #banner {
+        background-image: url("images/banner4.jpg");
+        background-position: center;
+        background-size: cover; /*自動縮放 */
+        background-repeat: no-repeat; /*不重複不併貼*/
+        /* background-attachment: fixed; */
+        height: 60vh; /* 須要設高度，否則看不到圖片 VIEWPORT 60% */
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <!-- 一、導覽列 要放在容器外面 先做ul>(li>a)*3 -->
+    <!-- .navbar>h1{Go Power}+button+.collapse>ul>(li>a)*3 -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top px-3 navBg">
+      <h1 class="navbar-brand">GoPower</h1>
+      <button data-toggle="collapse" data-target="#menu" class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse justify-content-end" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">GoPower首頁</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link text-warning disabled">關於我們</a>
+          </li>
+          <li class="nav-item">
+            <a href="intro.html" class="nav-link">課程資訊</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <!-- 第一列：BANNER 一列一欄的圖片 -->
+      <div class="row" id="banner">
+        <div class="col"></div>
+      </div>
+      <!-- 第二列：一列二欄的圖文(左文字右圖) -->
+      <!-- .row>.col* -->
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-10 col-sm-5 col-lg-4 d-flex justify-content-center align-items-center my-3">
+          <div> 
+          <!--是區塊屬性，預設不會繼承父層的flex屬性，可利用此特性來改變子元素的對齊方式 -->
+          <!-- DEMO這樣也可以，但不設就可達成目的了
+           <div class="d-flex flex-column"> -->
+            <h1 class="h5 text-info">
+              | 關於我們 About Us
+              <span class="h6 text-secondary d-block"
+                >創造美好的身體適能與擁有健康的人生。</span
+              >
+            </h1>
+            <ul class="list-unstyled text-success">
+              <li class="h6">獨家客製化訓練課程</li>
+              <li class="h6">教練均為合格驗證機構</li>
+              <li class="h6">採用大數據智慧分析體適能</li>
+              <li class="h6">專屬營養師提供建議清單</li>
+            </ul>
+          </div>
         </div>
-    </div>
-</section>
-
-<!-- 團隊成員 -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h2>我們的團隊</h2>
-                <p class="text-muted">專業、熱忱、創新的團隊成員</p>
-            </div>
+        <!-- 第二列右圖 -->
+        <div class="col-10 col-sm-5 col-lg-4 my-3">
+          <img src="images/door4.png" alt="" class="img-thumbnail" />
         </div>
-        <div class="row">
+      </div>
+      <!-- 第三列：一列二欄的圖文(左圖右文字) -->
+      <!-- .row>.col* -->
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-10 col-sm-5 col-lg-4 my-3">
+          <img src="images/door1.png" alt="" class="img-thumbnail" />
+        </div>
+        <div
+          class="col-10 col-sm-5 col-lg-4 d-flex justify-content-center align-items-center my-3"
+        >
+          <div>
+            <h1 class="h5 text-info">| 店家資訊 Shop Information</h1>
+            <ul class="list-unstyled text-success">
+              <li class="h6">營業時間：10:00p.m. ~ 22:00p.m.</li>
+              <li class="h6">洽詢專線：03-3458168</li>
+              <li class="h6">店面地址：桃園市桃園區健康路一段168號</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 引言列：一列一欄+3P -->
+      <div class="row d-flex justify-content-center mt5">
+        <div class="col-12 col-sm-10 col-md-8">
+          <p class="text-white">
+            GoPower運動健身中心，致力於為每一位注重健康與生活品質的人提供專業、個性化的健身方案。不論男女老少，我們都相信運動不分年齡與性別，只要有目標，便能達成理想的健康狀態。在GoPower，我們不僅關注您的體能，更重視心靈與環保的平衡，提供一個清新、綠意盎然的運動環境，讓您在鍛鍊的同時也能與大自然零距離接觸。
+          </p>
+
+          <p class="text-white">
+            我們的專業團隊會根據每位會員的需求，設計最合適的健身計畫，無論是增肌、減脂，或是提升功能性訓練，皆能針對性地進行調整。GoPower運動健身中心的輔導員將全程陪伴，為您提供專業指導，確保每一步訓練都有效且安全。
+          </p>
+          <p class="text-white">
+            我們的使命，是透過健身改變人生，幫助您在強健身體的同時，擁有更自信、更充實的生活。
+            <br>
+            無論您是健身新手或運動達人，GoPower都能成為您成長與進步的最佳夥伴，讓您在人生的每一個階段，保持最健康、最活力的狀態。
+          </p>
+        </div>
+      </div>
+      <!-- footer列：一列三欄 -->
+      <div class="row text-center text-secondary mt-5">
+        <!-- 第一欄 -->
+        <div class="col-12 col-md-4 my-3">
+          <h1 class="h5 text-white">---網站導覽---</h1>
+          <ul class="h6 list-unstyled">
+            <li class="my-3"><a href="" class="nav-link">首頁    </a></li>
+            <li class="my-3"><a href="" class="nav-link">關於我們</a></li>
+            <li class="my-3"><a href="" class="nav-link">最新活動</a></li>
+            <li class="my-3"><a href="" class="nav-link">學員見證</a></li>
+            <li class="my-3"><a href="" class="nav-link">服務項目</a></li>
+            <li class="my-3"><a href="" class="nav-link">場館介紹</a></li>
+            <li class="my-3"><a href="" class="nav-link">健身教學</a></li>
+            <li class="my-3"><a href="" class="nav-link">聯絡我們</a></li>
+          </ul>
+        </div>
+        <!-- 第二欄 -->
+        <div class="col-12 col-md-4 my-3">
+          <h1 class="h5 text-white">---服務項目---</h1>
+          <ul class="h6 list-unstyled">
+            <li class="my-3"><a href="" class="nav-link">私人教練</a></li>
+            <li class="my-3"><a href="" class="nav-link">飲食服務</a></li>
+            <li class="my-3"><a href="" class="nav-link">自主入場</a></li>
+            <li class="my-3"><a href="" class="nav-link">場租服務</a></li>
+            <li class="my-3"><a href="" class="nav-link">線上課程</a></li>
             
-            <div class="col-12 text-center">
-                <p class="text-muted">團隊成員資訊準備中...</p>
-            </div>
+          </ul>
+        </div>
+        <!-- 第三欄 -->
+        <div class="col-12 col-md-4 my-3">
+          <h1 class="h5 text-white">---相關網站---</h1>
+          <ul class="h6 list-unstyled">
+            <li class="my-3"><a href="" class="nav-link">MorePower專業補給站</a></li>
+            <li class="my-3"><a href="" class="nav-link">Healthy健康百科</a></li>
+            <li class="my-3"><a href="" class="nav-link">FitBody 健身網</a></li>
+            <li class="my-3"><a href="" class="nav-link">Eat Food健康餐</a></li>
             
         </div>
-    </div>
-</section>
-
-<!-- 公司歷史時間軸 -->
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h2>發展歷程</h2>
-                <p class="text-muted">我們的成長軌跡</p>
-            </div>
+      </div>
+      <!-- 頁尾列：一列一欄 -->
+      <div class="row mt-5">
+        <div class="col m-0 p-5">
+          <p class="text-center text-white">-GOPOWER FITNESS &copy; 2025-</p>
         </div>
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-badge">
-                            <i class="bi bi-flag"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2019年</h4>
-                                <p><small class="text-muted">公司成立</small></p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>公司正式成立，開始提供專業的網頁設計服務，初期團隊3人。</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-badge">
-                            <i class="bi bi-trophy"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2020年</h4>
-                                <p><small class="text-muted">業務擴展</small></p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>擴展APP開發服務，成功完成50個專案，團隊擴充至8人。</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-badge">
-                            <i class="bi bi-award"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2022年</h4>
-                                <p><small class="text-muted">獲得認證</small></p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>榮獲ISO 9001認證，建立完善的品質管理系統，累計服務客戶超過100家。</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-badge">
-                            <i class="bi bi-rocket"></i>
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2024年</h4>
-                                <p><small class="text-muted">持續創新</small></p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>導入AI技術，提供更智慧化的解決方案，團隊規模達到15人。</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+      </div>
     </div>
-</section>
-
-    </main>
-
-
-
-        {% endblock content %}
-{% block extra_js %}
-
-    <!-- 額外JavaScript區塊 -->
+  <!-- 警告動態資訊框 -->
+    <div class="modal fade" id="warning">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded">
+          <div class="modal-body m-0 p-1">
+            <div class="ratio ratio-16x9 rounded">
+              <img src="images/warning.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
-{% endblock extra_js %}
+    <script src="js/ctrl.js"></script>
+    
+  </body>
+</html>

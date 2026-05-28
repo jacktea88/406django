@@ -1744,3 +1744,4 @@ ch06/templates/templates/__pycache__/settings.cpython-313.pyc
 ch06/templates/templates/__pycache__/__init__.cpython-313.pyc
 ch06/templates/templates/__pycache__/settings.cpython-313.pyc
 ch06/templates/mysite/__pycache__/views.cpython-313.pyc
+ch06/templates/mysite/templates/js/jquery-3.6.0.min.js

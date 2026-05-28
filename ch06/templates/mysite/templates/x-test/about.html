@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/6Project3-GoPower-ok/css/style.css" />
+    <title>關於GoPower</title>
+    <style>
+      #banner {
+        background-image: url("images/banner4.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* background-attachment: fixed; */
+        height: 60vh;
+      }
+      .navBg {
+        background-color: rgba(0, 0, 0, 0.3);
+        transition: all 0.8s;
+      }
+      .navBg:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <nav class="navbar navbar-dark fixed-top navbar-expand-md navBg">
+      <h1 class="navbar-brand">GoPower</h1>
+      <button
+        class="navbar-toggler"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">GoPower首頁</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link text-warning disabled"
+              >關於我們</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="intro.html" class="nav-link">課程資訊</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <!-- 第一列：一列一欄的圖片banner -->
+      <div class="row">
+        <div class="col" id="banner"></div>
+      </div>
+      <!-- 第二列：一列二欄的圖文 -->
+      <div class="row d-flex justify-content-center align-items-center my-3">
+        <div
+          class="col-10 col-md-5 col-lg-4 d-flex justify-content-center align-items-center"
+        >
+          <div>
+            <h1 class="h5 text-info">
+              | 關於我們 About Us
+              <span class="h6 text-secondary d-block"
+                >創造美好的身體適能與擁有健康的人生。</span
+              >
+            </h1>
+
+            <ul class="list-unstyled text-success">
+              <li class="h6">獨家客製化訓練課程</li>
+              <li class="h6">教練均為合格驗證機構</li>
+              <li class="h6">採用大數據智慧分析體適能</li>
+              <li class="h6">專屬營養師提供建議清單</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-10 col-md-5 col-lg-4">
+          <img
+            src="/6Project3-GoPower-ok/images/door4.png"
+            alt=""
+            class="img-thumbnail"
+          />
+        </div>
+      </div>
+      <!-- 第三列：一列二欄的圖文 -->
+      <div class="row d-flex justify-content-center align-items-center my-3">
+        <div class="col-10 col-md-5 col-lg-4">
+          <img
+            src="/6Project3-GoPower-ok/images/door3.png"
+            alt=""
+            class="img-thumbnail"
+          />
+        </div>
+        <div
+          class="col-10 col-md-5 col-lg-4 d-flex justify-content-center align-items-center"
+        >
+          <div>
+            <h1 class="h5 text-info">| 店家資訊 Shop Information</h1>
+            <ul class="list-unstyled text-success">
+              <li class="h6">營業時間：10:00p.m. ~ 22:00p.m.</li>
+              <li class="h6">洽詢專線：03-3458168</li>
+              <li class="h6">店面地址：桃園市桃園區健康路一段168號</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 一列一欄引言 -->
+      <div class="row justify-content-center d-flex mt-5">
+        <div class="col text-white col-12 col-sm-10 col-md-8">
+          <p>
+            GoPower運動健身中心，致力於為每一位注重健康與生活品質的人提供專業、個性化的健身方案。不論男女老少，我們都相信運動不分年齡與性別，只要有目標，便能達成理想的健康狀態。在GoPower，我們不僅關注您的體能，更重視心靈與環保的平衡，提供一個清新、綠意盎然的運動環境，讓您在鍛鍊的同時也能與大自然零距離接觸。
+          </p>
+          <p>
+            我們的專業團隊會根據每位會員的需求，設計最合適的健身計畫，無論是增肌、減脂，或是提升功能性訓練，皆能針對性地進行調整。GoPower運動健身中心的輔導員將全程陪伴，為您提供專業指導，確保每一步訓練都有效且安全。
+          </p>
+          <p>
+            我們的使命，是透過健身改變人生，幫助您在強健身體的同時，擁有更自信、更充實的生活。
+            <br />
+            無論您是健身新手或運動達人，GoPower都能成為您成長與進步的最佳夥伴，讓您在人生的每一個階段，保持最健康、最活力的狀態。
+          </p>
+        </div>
+        <!-- footer 一列三欄 -->
+        <div class="row text-secondary text-center">
+          <div class="col-12 col-md-4 my-3">
+              <h1 class="h5 text-white">網站導覽</h1>
+            <ul class="h6 list-unstyled">
+              <li>首頁</li>
+              <li>關於我們</li>
+              <li>最新活動</li>
+              <li>學員見證</li>
+              <li>服務項目</li>
+              <li>場館介紹</li>
+              <li>健身教學</li>
+              <li>聯絡我們</li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-4 my-3">
+            <h1 class="h5 text-white">服務項目</h1>
+            <ul class="h6 list-unstyled">
+              <li>私人教練</li>
+              <li>飲食服務</li>
+              <li>自主入場</li>
+              <li>場租服務</li>
+              <li>線上課程</li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-4 my-3">
+            <h1 class="h5 text-white">相關網站</h1>
+            <ul class="h6 list-unstyled">
+                <li>MorePower健身網</li>
+                <li>MorePower專業補給站</li>
+                <li>Healthy健康百科</li>
+                <li>FitBody 健身網</li>
+                <li>Eat Food健康餐</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script></script>

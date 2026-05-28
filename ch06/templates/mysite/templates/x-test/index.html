@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/6Project3-GoPower-ok/css/style.css">
+    <title>GoPower</title>
+    <style>
+        body{
+            background-image: url("/6Project3-GoPower-ok/images/banner1.jpg");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+		.navBg{
+			background-color: rgba(0,0,0,0.3);
+			transition: all 0.8s;
+		}
+		.navBg:hover{
+			background-color: rgba(0,0,0,0.9);
+		}
+        .pta{
+            padding-top: 15px;
+            box-sizing: content-box;
+            /* box-sizing: border-box; */
+        }        
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-dark fixed-top navbar-expand-md navBg">
+    <h1 class="navbar-brand">GoPower</h1>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="index.html" class="nav-link text-warning disabled">GoPower首頁</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link">關於我們</a></li>
+            <li class="nav-item"><a href="intro.html" class="nav-link">課程資訊</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col justify-content-center d-flex align-items-center vh-100">
+            <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSet6EnkZTTsAEtLBTWZqek7RHpRxboOL0ZIHzLGddX6zE56YQ/viewform?usp=dialog" target="_blank"> -->
+                <div class="btn btn-danger text-white rounded border border-write pta" onclick="golink()">
+                    <h1 class="text-white h3">暑期優惠大放送</h1>
+                    <p class="border-bottom border-bottom-white text-warning">馬上體驗14天極致課程</p>
+                </div>
+            <!-- </a> -->
+            
+        </div>
+    </div>
+</div>
+</body>
+<div class="modal fade" id="cf">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded">
+            <div class="modal-body m-0 p-1">
+                <div class="ratio ratio-16x9 rounded">
+                    <video src="media/total.mp4" autoplay loop muted></video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="warning">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded">
+            <div class="modal-body m-0 p-1">
+                <div class="ratio ratio-16x9 rounded">
+                    <img src="/6Project3-GoPower-ok/images/warning.png" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
+<script>
+    window.addEventListener('load',function(){
+        let cf=new bootstrap.Modal(document.querySelector('#cf'));
+        // cf.show(); //暫時關閉
+    })
+    function golink(){
+        window.open("https://docs.google.com/forms/d/e/1FAIpQLSet6EnkZTTsAEtLBTWZqek7RHpRxboOL0ZIHzLGddX6zE56YQ/viewform?usp=dialog",
+            "_blank",
+            "width=500 height=900"
+        );
+    }
+
+    document.oncontextmenu=function(){
+        showWarning();
+        return false;
+    }
+    function showWarning(){
+        let warning=new bootstrap.Modal(document.querySelector("#warning"));
+        warning.show();
+    }
+    document.onkeydown=function(e){
+        if(e.keyCode===17 || e.keyCode===85 || e.keyCode===123){
+            showWarning();
+            return false;
+        }else{
+            return true;
+        }
+    }
+    // use js to show alert and show keyCode
+    document.onkeydown=function(e){
+        alert(e.keyCode)
+    }
+
+</script>
