@@ -161,3 +161,29 @@ def logout(request):
     messages.warning(request, '登出成功')
     return redirect('/')
 
+# for go power demo
+# 思考：
+# 1. 假設我們要在base_go.html中將about頁的導覽列按鈕變灰色，
+# 我們可以在about.html中定義一個變數，例如about_disable，
+# 並將其傳遞給base_go.html。
+# 然後，在base_go.html中，我們可以使用這個變數來設定導覽列按鈕的CSS類別，使其變灰色。
+# 2. 在about.html中，我們可以使用以下方式將about_disable變數傳遞給base_go.html：
+# return render(request, 'about.html', {'about_disable': 'text-warning disabled'})
+# 3. html使用with，我們可以使用以下方式設定導覽列按鈕的CSS類別：
+# <a class="nav-link {{ about_disable|default:'' }}" href="{% url 'about-url' %}">關於我們</a>
+# 4. 以上哪種方法比較好？使用with方法可以讓我們在base_go.html中更靈活地控制導覽列按鈕的CSS類別，而不需要在about.html中定義一個變數。
+# 這樣可以減少代碼的耦合性，使得base_go.html更加通用和可重用。
+# 因此，使用with方法可能會比較好。
+# 但在views.py中定義變數並傳遞給模板也是一種常見的做法，較簡易，適合簡單的情況。
+def gopower(request):
+    return render(request, 'gopower.html', locals())
+
+def about(request):
+    return render(request, 'about.html', locals())
+#也可用此方法將about_disable變數傳到base_go.html，讓about頁的導覽列按鈕變灰色
+    return render(request, 'about.html', {'about_disable': 'text-warning disabled'})
+
+
+def intro(request):
+    return render(request, 'intro.html', locals())
+

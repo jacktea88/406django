@@ -35,9 +35,14 @@ urlpatterns = [
     path('accounts/', include('registration.backends.default.urls')),
     # path('accounts/', include('allauth.urls')),
     # for product list
-    path('product/<int:id>/', views.product, name='product-url'),
+    # path('product/<int:id>/', views.product, name='product-url'),
     # for filer
-    path('filer/', include('filer.urls')), 
+    # path('filer/', include('filer.urls')), 
+    # for go power demo
+    path('gopower/', views.gopower, name='gopower-url'),
+    path('about/', views.about, name='about-url'),
+    path('intro/', views.intro, name='intro-url'),
+
     
 ]
 
