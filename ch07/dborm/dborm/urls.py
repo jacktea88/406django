@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mysite import views
+# 引入静态文件的URL配置函数和设置模块
 from django.conf import settings
 from django.conf.urls.static import static
 
