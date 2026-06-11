@@ -9,7 +9,8 @@
     </div>
     {% endif %}
     <h2>歡迎來到心情留言板</h2>
-    <form action="/" method="POST">
+    <!-- <form action="/" method="POST"> -->
+    <form action="." method="POST">
         {% csrf_token %}
         {% for m in moods %}
         <input type="radio" name="mood" value="{{ m.status }}">{{ m.status }}

@@ -24,7 +24,7 @@
         {% for p in posts %}
         <div class='col-sm-12 col-md-4'>
             <div class='card'>
-                <div class='card-header text-white bg-primary'>【{{ p.nickname }}】覺得{{ p.mood }}</div>
+                <div class='card-header text-white bg-primary'>【{{ p.nickname }}】覺得{{ p.mood.status }}</div>
                 <div class='card-body'>{{ p.message | linebreaks }}</div>
                 <div class='card-footer' align='right'>
                     <i><small>{{ p.pub_time }}</small></i>

@@ -5,11 +5,16 @@ from django.conf import settings
 
 
 # Create your views here.
+
+# 一、基本的表單處理
+
 # def index(request):
 #     years = range(1912, 2020)
+#     # 二、接收表單資料
 #     try:
 #         user_id = request.GET['user_id']
 #         user_pass = request.GET['user_pass']
+#         # 三、下拉選單與核取方塊
 #         user_byear = request.GET['byear']
 #         urfcolor = request.GET.getlist('fcolor')
 #     except:
@@ -18,9 +23,13 @@ from django.conf import settings
 #         verified = True
 #     else:
 #         verified = False
+#     # 一、表單簡介：登入
 #     return render(request, 'index.html', locals())
 
+# 二、將表單資料寫入資料庫
+# copy from 上面的 index() function
 # def index(request):
+#     # 一、讀取資料庫資料備用
 #     posts = models.Post.objects.all().order_by('-pub_time')
 #     moods = models.Mood.objects.all()
 #     try:
@@ -29,20 +38,22 @@ from django.conf import settings
 #         user_post = request.GET['user_post']
 #         user_mood = request.GET['mood']
 #     except:
-#         # user_id = None
+#         user_id = None
 #         message = '每一欄都要填寫'
     
-#     # if user_id != None:
+#     if user_id != None:
+    
 #         mood = models.Mood.objects.get(status = user_mood)
 #         post = models.Post(mood = mood, nickname = user_id, message = user_post, del_pass = user_pass)
 #         # post = models.Post( ,nickname = user_id, message = user_post, del_pass = user_pass)
-#         # post.save()
+#         post.save()
 #         message = '張貼成功'
-#     # else:
+#     else:
 #         message = '無效的帳號'
 
 #     return render(request, 'index_post.html', locals())
 
+# 三、使用POST方法提交表單資料 (copy from 上面的 index(二) function)
 def index(request):
     posts = models.Post.objects.all().order_by('-pub_time')
     moods = models.Mood.objects.all()
@@ -56,21 +67,22 @@ def index(request):
         # user_post = request.GET['user_post']
         # user_mood = request.GET['mood']
 
-        print(user_id, user_pass, user_post, user_mood)
+        print('by view.index', user_id, user_pass, user_post, user_mood)
     except:
         user_id = None
-        message = '每一欄都要填寫'
+        message = '每一欄都要填寫by POST except'
     if user_id != None:
         
         mood = models.Mood.objects.get(status = user_mood)
         post = models.Post(mood = mood, nickname = user_id, message = user_post, del_pass = user_pass)
         post.save()
-        message = '張貼成功'
+        message = '張貼成功 by POST'
     else:
-        message = '每一欄都要填寫'
+        message = '每一欄都要填寫 by POST else'
     # print(user_id, user_pass, user_post, user_mood)    
     return render(request, 'index_post.html', locals())
 
+# 四、拆分不同的URL處理不同的表單資料，並跳轉URL
 def listing(request):
     posts = models.Post.objects.order_by('-pub_time')
     moods = models.Mood.objects.all()
@@ -78,6 +90,7 @@ def listing(request):
 
 def posting(request):
     moods = models.Mood.objects.all()
+    print('by view.posting', request.method)
     try:
         user_id = request.POST['user_id']
         user_pass = request.POST['user_pass']
@@ -88,25 +101,27 @@ def posting(request):
         # user_post = request.GET['user_post']
         # user_mood = request.GET['mood']
 
-        print(user_id, user_pass, user_post, user_mood)
+        print('by view.posting', user_id, user_pass, user_post, user_mood)
     except:
         user_id = None
-        message = '每一欄都要填寫posting except'
+        message = '每一欄都要填寫view.posting except'
     if user_id != None:
         
         mood = models.Mood.objects.get(status = user_mood)
         post = models.Post(mood = mood, nickname = user_id, message = user_post, del_pass = user_pass)
         post.save()
-        message = '張貼成功posting'
+        message = '張貼成功view.posting'
     else:
-        message = '每一欄都要填寫posting else'    
+        message = '每一欄都要填寫view.posting else'    
     # message = '如要張貼訊息，則每一個欄位都要填...'
     return render(request, "posting.html", locals())
 
+# 五1、使用Django表單類別處理聯絡表單
 # def contact(request):
 #     form = forms.ContactForm()
 #     return render(request, 'contact.html', locals())
 
+# 五2、使用Django表單類別處理聯絡表單
 def contact(request):
     if request.method == 'POST':
         form = forms.ContactForm(request.POST)
@@ -129,21 +144,25 @@ def contact(request):
         message = '如要寫信給管理員，請留下您的聯絡資訊...'
     return render(request, 'contact.html', locals())
 
+# 六、使用ModelForm類別處理表單資料
 def post2db(request):
     print('post 2 db method', request.method)
+    # 二、接收表單資料
     if request.method == 'POST':
         post_form = forms.PostForm(request.POST)
         if post_form.is_valid():
             post_form.save()
             message = '張貼成功'
             print('張貼成功')
-            return redirect('/')
+            # 三、跳轉到列出訊息的URL
+            return redirect('/listing/')
         else:
-            message = '每一欄都要填寫post'
+            message = '每一欄都要填寫view.post2db else POST'
             print('not valid')
     else:  # GET
+        # 一、建立表單
         post_form = forms.PostForm()
         moods = models.Mood.objects.all()
-        message = '每一欄都要填寫get'
+        message = '每一欄都要填寫view.post2db else GET'
         print('get')
     return render(request, 'post2db.html', locals())

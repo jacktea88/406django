@@ -20,6 +20,8 @@
         <div class="card-body">
             <form name="contact_form" action="." method="POST">
             {% csrf_token %}
+<!-- 一、使用Django表單類別處理聯絡表單 -->
+            
             {% comment %} {{ form.as_p }} {% endcomment %}
                 <table>
                     {{ form.as_table }}

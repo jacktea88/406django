@@ -21,6 +21,7 @@ from mysite import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    # 使用POST方法提交表單資料
     path('posting/', views.posting, name='posting'),
     path('listing/', views.listing, name='listing'),
     path('contact/', views.contact, name='contact'),

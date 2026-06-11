@@ -17,7 +17,9 @@ class ContactForm(forms.Form):
     user_email = forms.EmailField(label='電子郵件')
     user_message = forms.CharField(label='您的意見', widget=forms.Textarea)
 
+# 六、使用ModelForm類別處理表單資料
 class PostForm(forms.ModelForm):
+    # 七、防止機器人，加入驗證碼欄位
     captcha = CaptchaField()
     class Meta:
         model = models.Post
@@ -29,4 +31,5 @@ class PostForm(forms.ModelForm):
         self.fields['nickname'].label = '你的暱稱'
         self.fields['message'].label = '心情留言'
         self.fields['del_pass'].label = '設定密碼'
+        # 七、防止機器人，加入驗證碼欄位
         self.fields['captcha'].label = '確定你不是機器人'

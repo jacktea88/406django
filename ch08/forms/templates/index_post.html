@@ -11,10 +11,11 @@
     <h2>歡迎來到心情留言板</h2>
     <form action="/" method="GET">
         {% csrf_token %}
+        <h5>選擇心情</h5>
         {% for m in moods %}
         <input type="radio" name="mood" value="{{ m.status }}">{{ m.status }}
         {% endfor %}
-
+        <h5>寶寶心情留言</h5>
         <textarea name="user_post" id=""></textarea><br>        
         <label for="user_id">Your ID</label>
         <input type="text" name="user_id" id="user_id">
@@ -41,7 +42,7 @@
         {% for p in posts %}
         <div class='col-sm-12 col-md-4'>
             <div class='card'>
-                <div class='card-header text-white bg-primary'>【{{ p.nickname }}】覺得{{ p.mood }}</div>
+                <div class='card-header text-white bg-primary'>【{{ p.nickname }}】覺得{{ p.mood.status }}</div>
                 <div class='card-body'>{{ p.message | linebreaks }}</div>
                 <div class='card-footer' align='right'>
                     <i><small>{{ p.pub_time }}</small></i>
