@@ -11,7 +11,7 @@ class User(models.Model):
     def __str__(self):
         return self.name
     
-# use profile model
+# 十一、擴充auth.models.User表,額外增加 profile model
 class Profile(models.Model):
     user = models.OneToOneField(auth.models.User, on_delete=models.CASCADE)
     height = models.PositiveIntegerField(default=160)

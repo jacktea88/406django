@@ -1,8 +1,11 @@
 from django.shortcuts import redirect, render
 from mysite import forms, models
+
+# for session
 from django.contrib.sessions.models import Session
 from django.contrib import messages
 
+# use django auth登入認證
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -22,6 +25,7 @@ from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt    
 
 # Create your views here.
+# 一、測試cookie是否啟用
 # def index(request):
 #     if request.session.test_cookie_worked():
 #         request.session.delete_test_cookie()
@@ -31,7 +35,7 @@ from django.views.decorators.csrf import csrf_exempt
 #         request.session.set_test_cookie()
 #     return render(request, 'index.html', locals())
 
-# 檢查username是否存在
+# 三、使用session檢查username是否存在
 # def index(request):
 #     if 'username' in request.session:
 #         username = request.session['username']
@@ -45,7 +49,7 @@ from django.views.decorators.csrf import csrf_exempt
 #         messages.warning(request, '登入失敗')
 #     return render(request, 'index.html', locals())
 
-# use django auth for index
+# 八、use django auth for index
 def index(request):
     if request.user.is_authenticated:
         username = request.user.username
@@ -59,7 +63,7 @@ def index(request):
         messages.warning(request, 'USER不存在，登入失敗')
     return render(request, 'index.html', locals())
 
-
+# 二、六、基本登入頁面處理、使用messages來顯示登入狀態
 # def login(request):
 #     if request.method == 'POST':
 #         login_form = forms.LoginForm(request.POST)
@@ -86,7 +90,7 @@ def index(request):
 #         login_form = forms.LoginForm()
 #     return render(request, 'login.html', locals())
 
-# use django auth login
+# 七、use django auth login
 def login(request):
     if request.method == 'POST':
         login_form = forms.LoginForm(request.POST)
@@ -96,7 +100,7 @@ def login(request):
             user = authenticate(username=login_name, password=login_password)
             if user is not None:
                 if user.is_active:
-                    auth.login(request, user)
+                    auth.login(request, user) # 此行建立session並儲存用戶資訊，相當於request.session['username'] = login_name
                     messages.warning(request, '成功登入了')
                     return redirect('/')
                 else:
@@ -109,7 +113,7 @@ def login(request):
         login_form = forms.LoginForm()
     return render(request, 'login.html', locals())
 
-# session logout
+# 四、使用session logout
 def logout(request):
     if 'username' in request.session:
         Session.objects.all().delete()
@@ -119,7 +123,7 @@ def logout(request):
         messages.warning(request, '登出成功')
     return redirect('/')
 
-# user info from session
+# 五、user info from session
 # def userinfo(request):
 #     if 'username' in request.session:
 #         username = request.session['username']
@@ -134,8 +138,8 @@ def logout(request):
 #         pass
 #     return render(request, 'userinfo.html', locals())
 
-# use django auth userinfo
-@login_required(login_url='/login/')
+# 九、use django auth userinfo
+@login_required(login_url='/login/') # demo須要先登入，如果未登入則跳轉到/login/頁面
 def userinfo(request):
     if request.user.is_authenticated:
         username = request.user.username
@@ -146,16 +150,17 @@ def userinfo(request):
         return redirect('/login/')
     try:
         user = User.objects.get(username=username)
-        userinfo = models.Profile.objects.get(user=user)    # 用自己擴充的Profile欄位
+        # userinfo = User.objects.get(username=username)     # 九、用auth內建的User欄位
+        userinfo = models.Profile.objects.get(user=user)    # 十一、用自己擴充的Profile欄位
+        
         # userinfo = models.User.objects.get(name=username) # 用自己的User欄位
-        # userinfo = User.objects.get(username=username)     # 用auth內建的User欄位
-        # userinfo = models.Profile.objects.get(user=user)
+        
     except Exception as e:
         print(e)
         pass
     return render(request, 'userinfo.html', locals())
 
-# use django auth logout
+# 十、use django auth logout
 def logout(request):
     auth.logout(request)
     messages.warning(request, '登出成功')
@@ -164,8 +169,8 @@ def logout(request):
 # votes table
 def votes(request):
     data = Vote.objects.all().order_by('name')
-    # return render(request, 'votes.html', locals())
-    return render(request, 'votes_table.html', locals())
+    return render(request, 'votes.html', locals())
+    # return render(request, 'votes_table.html', locals())
 
 # use plotly
 def plotly(request):

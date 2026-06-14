@@ -6,14 +6,17 @@
 {% for message in messages %}
     <div class='alert alert-{{message.tags}}'>{{ message }}</div>
 {% endfor %}
+<!-- 一、滿版標題 -->
     <div class='row'>
         <div class='col-md-12'>
             <h3 class="alert alert-primary">2022左楠區市議員投票結果</h3>
         </div>
     </div>
+<!-- 二、左邊一半版面，使用Chart.js來繪製圖表 -->
     <div class="row">
         <div class="col-md-6">
             <div>
+              <!-- 二三、修改大小和比例，讓圖表更適合顯示得票數 -->
               <canvas id="myChart" width=200 height=250></canvas>
             </div>
 
@@ -25,11 +28,13 @@
               new Chart(ctx, {
                 type: 'bar',
                 data: {
+                  // 二一、y軸name欄位作為圖表的labels
                   labels: [
                             {% for d in data %}
                                 '{{d.name}}',
                             {% endfor %}
                           ],
+                  // 二一、x軸votes欄位作為圖表的數據(得票數)
                   datasets: [{
                     label: '2022年高雄市左楠區市議員選舉得票數',
                     data: [
@@ -45,12 +50,14 @@
                       beginAtZero: true
                     }
                   },
+                  // 二二、使用indexAxis: 'y'來讓x軸顯示得票數
                   indexAxis: 'y',
                 }
               });
             </script>
               
         </div>
+<!-- 三、右邊一半版面，顯示表格 -->
         <div class="col-md-6">
             <table class="table table-striped table-sm">
                 <tr>
