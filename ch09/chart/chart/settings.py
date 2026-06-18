@@ -73,6 +73,7 @@ WSGI_APPLICATION = 'chart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#使用sqlite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -80,6 +81,18 @@ DATABASES = {
     }
 }
 
+#使用mysql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'chart',
+#         'USER': 'admin',
+#         'PASSWORD': '1111',
+#         # 'HOST': '127.0.0.1',
+#         'HOST': '192.168.1.28',
+#         'PORT': '3306',
+#     }     
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

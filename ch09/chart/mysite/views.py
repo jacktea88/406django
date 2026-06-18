@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.utils.http import url_has_allowed_host_and_scheme
 
 # for votes
 from mysite.models import Vote
@@ -100,9 +101,16 @@ def login(request):
             user = authenticate(username=login_name, password=login_password)
             if user is not None:
                 if user.is_active:
-                    auth.login(request, user) # 此行建立session並儲存用戶資訊，相當於request.session['username'] = login_name
+                    auth.login(request, user) # 建立 session 並儲存用戶資訊
                     messages.warning(request, '成功登入了')
-                    return redirect('/')
+                    # 優先從 POST（若 template 有 hidden next）或 GET 取得 next 參數
+                    next_url = request.POST.get('next') or request.GET.get('next') or '/'
+                    # 安全檢查 next_url 是否指向本站
+                    if url_has_allowed_host_and_scheme(next_url, {request.get_host()}):
+                        print('go next_url:', next_url)
+                        return redirect(next_url)
+                    else:
+                        return redirect('/')
                 else:
                     messages.warning(request, '帳號尚未啟用')
             else:
@@ -111,6 +119,9 @@ def login(request):
             messages.warning(request, '請檢查輸入的欄位內容')
     else:   # GET
         login_form = forms.LoginForm()
+        print('request.GET: next=', request.GET.get('next', ''))
+        # 將 next 傳給 template（若有 ?next=...）以便在 POST 時保留該參數
+        next = request.GET.get('next', '')
     return render(request, 'login.html', locals())
 
 # 四、使用session logout
