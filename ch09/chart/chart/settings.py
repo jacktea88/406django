@@ -85,11 +85,13 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'chart',
+#         # 'NAME': 'chart',
+#         'NAME': 'django',
 #         'USER': 'admin',
 #         'PASSWORD': '1111',
 #         # 'HOST': '127.0.0.1',
-#         'HOST': '192.168.1.28',
+#         # 'HOST': '192.168.1.28', # vm
+#         'HOST': '172.17.47.104', # wsl linux26
 #         'PORT': '3306',
 #     }     
 # }
