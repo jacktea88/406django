@@ -26,3 +26,6 @@ class Product(models.Model):
     price = models.PositiveIntegerField()
     size = models.CharField(max_length=1, choices=SIZES)
     qty = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
