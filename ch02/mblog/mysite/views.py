@@ -14,7 +14,7 @@ def index(request):
     return render(request, 'index.html', locals())
 
 def showpost(request,slug):
-    post = Post.objects.get(slug=slug)
+    post = Post.objects.get(slug=slug) # 比對左側slug欄位中符合右側參數的物件
     now = datetime.now()
     return render(request, 'showpost.html', locals())
 
