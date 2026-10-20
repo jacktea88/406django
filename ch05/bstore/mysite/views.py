@@ -6,14 +6,16 @@ from django.urls import reverse
 def index(request):
     return render(request, 'index.html')
 
-def about(request, author_no=1):
-    # 先demo沒有預設值時會產生error
+def about(request, author_no=0):
+    # 先demo沒有預設值時會產生error, 也就是網址沒有author_no參數時會報錯，
+    # 只有/about會報錯，但/about/1不會報錯
     print('url about:', reverse('about_url'))
     print('url about_no:', reverse('about_no_url', args=[author_no]))
 
     return render(request, 'about.html', locals())
 
-# 用url參數來傳遞author
+    
+# 用url參數來傳遞author -> path('about2/', about2, {'author': 'joe'}, name='about2_url', ),
 def about2(request, author):
     print('url about2:', reverse('about2_url'))
     return render(request, 'about.html', locals())

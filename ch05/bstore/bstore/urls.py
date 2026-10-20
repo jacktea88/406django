@@ -24,6 +24,7 @@ about_patterns = [
     path('about2/', about2, {'author': 'joe'}, name='about2_url', ),
 ]
 
+# 注意：每個pattern必須以「/」做為結束，但網址列中最後的「/」可以省略，Django會自動處理。
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
