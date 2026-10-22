@@ -98,6 +98,7 @@ def books_list(request):
     # print('request.method:', request, request.method)
     
     # step 2: ===== 查詢參數處理 (GET with query)=====
+    #GET http://127.0.0.1:8000/api/books/?category=1 - 取得分類為1的書籍
     if request.method == 'GET':
         category = request.GET.get('category')
         search = request.GET.get('search')
@@ -105,7 +106,7 @@ def books_list(request):
             print('category:', category)
             books_category = []
             try:
-                category = int(category)
+                # category = int(category)
                 # books = [book for book in books if book['category_id'] == int(category)]
                 for book in books:
                     print('book:', book)
@@ -125,12 +126,12 @@ def books_list(request):
             
             books_search = []
             for book in books:
-                if search.lower() in book['title'].lower():
+                if search.lower() in book['title'].lower(): #可部份搜尋
                     books_search.append(book)
             books = books_search
             print('books:', books)
 
-    # step 3: ===== 新增書籍 (POST)=====
+    # step 3: ===== 新增書籍 (POST) by postman=====
     if request.method == 'POST':
         print('request.POST:', request.POST)
         try:
@@ -166,7 +167,7 @@ def book_detail(request, book_id):
     # 更新id=2的書籍，所以id=2的書籍會改成下面這內容
     # {"id": 2, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 1200, "category_id": 1}
     # {"id": 2, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
-    book = fine_book_by_id(book_id)
+    book = find_book_by_id(book_id)
     print('book:', book)
     if not book:
         return JsonResponse({'error': '書籍不存在'}, status=404)
@@ -200,6 +201,7 @@ def book_reviews(request, book_id):
     """書籍評論端點
     GET http://127.0.0.1:8000/api/books/1/reviews/ - 取得特定書籍的評論
     POST http://127.0.0.1:8000/api/books/1/reviews/ - 新增特定書籍的評論
+    注意：不支援刪除，因可能有多筆review，但一次只能刪一筆
     DELETE http://127.0.0.1:8000/api/books/1/reviews/ - 刪除特定書籍的評論
     """
     book = find_book_by_id(book_id)
@@ -262,7 +264,7 @@ def category_detail(request, category_id):
         return JsonResponse({'error': 'Category not found'}, status=404)
     
     # 若有此分類，則再取得該分類的所有書籍資料
-    # books = [book for book in BOOKS_DATA if book['category_id'] == category_id]
+    books = [book for book in BOOKS_DATA if book['category_id'] == category_id]
     
     return JsonResponse({
         'category': category,

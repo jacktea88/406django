@@ -1569,10 +1569,6 @@ ch09/chart/mysite/migrations/__pycache__/__init__.cpython-313.pyc
 ch09/chart/mysite/migrations/__pycache__/0001_initial.cpython-313.pyc
 ch09/chart/mysite/migrations/__pycache__/0002_profile.cpython-313.pyc
 ch09/chart/mysite/migrations/__pycache__/0003_vote.cpython-313.pyc
-ch05/bstore/api/urls.py
-ch05/bstore/api/views-bak.py
-ch05/bstore/api/views-test.py
-ch05/bstore/api/views.py
 ch05/bstore/api/__pycache__/__init__.cpython-312.pyc
 ch05/bstore/api/__pycache__/admin.cpython-312.pyc
 ch05/bstore/api/__pycache__/apps.cpython-312.pyc
@@ -1580,13 +1576,11 @@ ch05/bstore/api/__pycache__/models.cpython-312.pyc
 ch05/bstore/api/__pycache__/urls.cpython-312.pyc
 ch05/bstore/api/__pycache__/views.cpython-312.pyc
 ch05/bstore/api/migrations/__pycache__/__init__.cpython-312.pyc
-ch05/bstore/bstore/urls.py
 ch05/bstore/bstore/__pycache__/__init__.cpython-312.pyc
 ch05/bstore/bstore/__pycache__/settings.cpython-312.pyc
 ch05/bstore/bstore/__pycache__/urls.cpython-312.pyc
 ch05/bstore/bstore/__pycache__/urls.cpython-313.pyc
 ch05/bstore/bstore/__pycache__/wsgi.cpython-312.pyc
-ch05/bstore/mysite/views.py
 ch05/bstore/mysite/__pycache__/__init__.cpython-312.pyc
 ch05/bstore/mysite/__pycache__/admin.cpython-312.pyc
 ch05/bstore/mysite/__pycache__/apps.cpython-312.pyc
@@ -1727,7 +1721,6 @@ ch02/mblog/staticfiles/admin/js/vendor/select2/i18n/zh-TW.js
 ch02/mblog/staticfiles/admin/js/vendor/xregexp/LICENSE.txt
 ch02/mblog/staticfiles/admin/js/vendor/xregexp/xregexp.js
 ch02/mblog/staticfiles/admin/js/vendor/xregexp/xregexp.min.js
-ch02/mblog/staticfiles/images/logo.png
 ch06/templates/mysite/__pycache__/__init__.cpython-312.pyc
 ch06/templates/mysite/__pycache__/admin.cpython-312.pyc
 ch06/templates/mysite/__pycache__/apps.cpython-312.pyc
@@ -1744,7 +1737,6 @@ ch06/templates/templates/__pycache__/settings.cpython-313.pyc
 ch06/templates/templates/__pycache__/__init__.cpython-313.pyc
 ch06/templates/templates/__pycache__/settings.cpython-313.pyc
 ch06/templates/mysite/__pycache__/views.cpython-313.pyc
-ch06/templates/mysite/templates/js/jquery-3.6.0.min.js
 ch08/forms/forms/__pycache__/__init__.cpython-312.pyc
 ch08/forms/forms/__pycache__/settings.cpython-312.pyc
 ch08/forms/forms/__pycache__/urls.cpython-312.pyc
@@ -1766,7 +1758,6 @@ ch09/chart/mysite/__pycache__/forms.cpython-312.pyc
 ch09/chart/mysite/__pycache__/models.cpython-312.pyc
 ch09/chart/mysite/__pycache__/views.cpython-312.pyc
 ch09/chart/mysite/__pycache__/views.cpython-313.pyc
-ch09/chart/mysite/views.py
 ch09/chart/mysite/__pycache__/views.cpython-313.pyc
 ch09/chart/mysite/migrations/__pycache__/__init__.cpython-312.pyc
 ch09/chart/mysite/migrations/__pycache__/0001_initial.cpython-312.pyc
@@ -1803,7 +1794,6 @@ ch04/phone/mysite/migrations/__pycache__/0002_product.cpython-312.pyc
 ch04/phone/phone/__pycache__/__init__.cpython-312.pyc
 ch04/phone/phone/__pycache__/settings.cpython-312.pyc
 ch04/phone/phone/__pycache__/urls.cpython-312.pyc
-ch04/phone/products.py
 ch04/phone/mysite/__pycache__/admin.cpython-313.pyc
 ch04/phone/mysite/__pycache__/models.cpython-313.pyc
 ch04/phone/phone/__pycache__/settings.cpython-313.pyc
@@ -1815,7 +1805,6 @@ ch04/phone/mysite/__pycache__/admin.cpython-313.pyc
 ch04/phone/mysite/__pycache__/models.cpython-313.pyc
 ch04/phone/mysite/__pycache__/admin.cpython-313.pyc
 ch04/phone/db.sqlite3
-ch04/phone/mysite/models.py
 ch04/phone/mysite/__pycache__/admin.cpython-313.pyc
 ch04/phone/mysite/__pycache__/models.cpython-313.pyc
 ch04/phone/mysite/__pycache__/views.cpython-313.pyc
@@ -1826,7 +1815,6 @@ ch04/phone/phone/__pycache__/urls.cpython-313.pyc
 ch04/phone/phone/__pycache__/settings.cpython-313.pyc
 ch04/phone/phone/__pycache__/urls.cpython-313.pyc
 ch04/phone/db.sqlite3
-ch04/phone/mysite/models.py
 ch04/phone/mysite/__pycache__/admin.cpython-313.pyc
 ch04/phone/mysite/__pycache__/models.cpython-313.pyc
 ch04/phone/phone/__pycache__/settings.cpython-313.pyc
@@ -1834,13 +1822,6 @@ ch04/phone/phone/__pycache__/urls.cpython-313.pyc
 ch04/phone/mysite/__pycache__/admin.cpython-313.pyc
 ch04/phone/mysite/__pycache__/models.cpython-313.pyc
 ch04/phone/mysite/__pycache__/models.cpython-313.pyc
-ch05/django_urlconf_練習一.md
-ch05/django_urlconf_練習題目.md
-ch05/Django4-ch05.pptx
-ch05/url可以使用的參數型別.jpg
-ch05/bstore/bstore/urls.py
 ch05/bstore/bstore/__pycache__/urls.cpython-313.pyc
-ch05/bstore/mysite/views.py
 ch05/bstore/mysite/__pycache__/views.cpython-313.pyc
-ch05/bstore/templates/about.html
 ch05/bstore/mysite/__pycache__/views.cpython-313.pyc
