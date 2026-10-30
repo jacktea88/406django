@@ -1,273 +1,136 @@
 from django.http import Http404, JsonResponse
 from django.shortcuts import render
-import json
-from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
 
-# Global database 相當於存在記憶體中的資料庫，
-# 實際上是用Python的list來模擬資料庫的功能，
-# 這樣就不需要設定真正的資料庫了，適合用來測試API功能。
+# Create your views here.
+def index(request):
+    return render(request, 'index.html')
 
-BOOKS_DATA = [
-    {'id': 1, 'title': 'Python程式設計', 'author': '王小明', 'price': 450, 'category_id': 1},
-    {'id': 2, 'title': 'Django網頁開發', 'author': '李小華', 'price': 520, 'category_id': 1},
-    {'id': 3, 'title': '資料結構與演算法', 'author': '張大同', 'price': 380, 'category_id': 2},
-    {'id': 4, 'title': '機器學習入門', 'author': '陳小美', 'price': 600, 'category_id': 3},
+def about(request, author_no=0):
+    # 先demo沒有預設值時會產生error, 也就是網址沒有author_no參數時會報錯，
+    # 只有/about會報錯，但/about/1不會報錯
+    print('url about:', reverse('about_url'))
+    print('url about_no:', reverse('about_no_url', args=[author_no]))
+
+    return render(request, 'about.html', locals())
+
+    
+# 用url參數來傳遞author -> path('about2/', about2, {'author': 'joe'}, name='about2_url', ),
+def about2(request, author):
+    print('url about2:', reverse('about2_url'))
+    return render(request, 'about.html', locals())
+
+# 習題一：書籍列表頁面
+def book_list(request):
+    # 模擬書籍資料
+    books = [
+        {'id': 1, 'title': 'Python程式設計', 'author': '王小明', 'price': 450},
+        {'id': 2, 'title': 'Django網頁開發', 'author': '李小華', 'price': 520},
+        {'id': 3, 'title': '資料結構與演算法', 'author': '張大同', 'price': 380},
+    ]
+    
+    context = {
+        'books': books,
+        'page_title': '書籍列表'
+    }
+
+    # return JsonResponse(context, status=200)
+    return render(request, 'book_list.html', locals())
+
+# 習題二：書籍詳細頁面
+MOCK_BOOKS = [
+    {
+        'id': 1, 'title': 'Python程式設計', 'author': '王小明', 
+        'author_slug': 'wang-xiaoming', 'category': 'programming', 
+        'price': 450, 'isbn': '978-1-234-56789-0', 'year': 2023
+    },
+    {
+        'id': 2, 'title': 'Django網頁開發', 'author': '李小華', 
+        'author_slug': 'li-xiaohua', 'category': 'web-development', 
+        'price': 520, 'isbn': '978-1-234-56789-1', 'year': 2024
+    },
+    {
+        'id': 3, 'title': '資料結構與演算法', 'author': '張大同', 
+        'author_slug': 'zhang-datong', 'category': 'computer-science', 
+        'price': 380, 'isbn': '978-1-234-56789-2', 'year': 2023
+    },
+    {
+        'id': 4, 'title': '機器學習實戰', 'author': '王小明', 
+        'author_slug': 'wang-xiaoming', 'category': 'machine-learning', 
+        'price': 600, 'isbn': '978-1-234-56789-3', 'year': 2024
+    },
 ]
 
-CATEGORIES_DATA = [
-    {'id': 1, 'name': 'Programming', 'description': '程式設計相關書籍'},
-    {'id': 2, 'name': 'Computer Science', 'description': '計算機科學相關書籍'},
-    {'id': 3, 'name': 'Machine Learning', 'description': '機器學習相關書籍'},
-]
-
-REVIEWS_DATA = [
-    {'id': 1, 'book_id': 1, 'rating': 5, 'comment': '很棒的書！', 'user': '讀者A'},
-    {'id': 2, 'book_id': 1, 'rating': 4, 'comment': '內容豐富', 'user': '讀者B'},
-    {'id': 3, 'book_id': 2, 'rating': 5, 'comment': 'Django入門首選', 'user': '讀者C'},
-]
-
-# ===== 習題三共用的輔助函數 =====
-def find_book_by_id(book_id):
-    for book in BOOKS_DATA:
-        if book['id'] == book_id:
-            return book
-    return None
-
-def get_reviews_by_book_id(book_id):
-    allreviews = []
-    print('REVIEWS_DATA:', REVIEWS_DATA)
-    for review in REVIEWS_DATA:
-        if review['book_id'] == book_id:
-            allreviews.append(review)
-            print('allreviews:', allreviews)
-    if not allreviews:
-        return None
-    return allreviews
-
-
-
-
-def  find_category_by_id(category_id):
-    for category in CATEGORIES_DATA:
-        if category['id'] == category_id:
-            return category
-    return None
-
-# ===== API首頁列表 =====
-def index_api(request):
-    return JsonResponse({
-        "message": "BOOK STORE API",
-        "version": 1.0,
-        "endpoint": {
-            "books": "http://127.0.0.1:8000/api/books/",
-            "categories": "http://127.0.0.1:8000/api/categories/",
-            "book": "http://127.0.0.1:8000/api/books/{book_id}/",
-            "category": "http://127.0.0.1:8000/api/categories/{category_id}/",
-            "reviews": "http://127.0.0.1:8000/api/reviews/",
-            "review": "http://127.0.0.1:8000/api/reviews/{review_id}/",
-            
-        }
-        
-        })
-    # return render(request, 'index-bak.html')
-
-# ===== 測試用：API首頁列表 =====
-# def index_api(request):
-#     return JsonResponse({
-#         "message": "Hello World!"
-        
-#         })
-
-# 先demo沒有設定@csrf_exempt的情況，會有CSRF驗證失敗的錯誤，然後再加上@csrf_exempt來解決這個問題。
-@csrf_exempt    # 防止跨站請求攻擊
-def books_list(request):
-    #GET http://127.0.0.1:8000/api/books/ - 取得所有書籍
-    #GET http://127.0.0.1:8000/api/books/?category=1 - 取得分類為1的書籍 
-    #POST http://127.0.0.1:8000/api/books/ - 新增書籍
-    # Unicode編碼對應的中文字符
-    #{"id": 1, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 900, "category_id": 1}
-    #{"id": 1, "title": "Python程式設計", "author": "王小明", "price": 450, "category_id": 1}   
-    #{"id": 1, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
-    
-    # step 1: ===== 一般顯示所有書籍列表，無特定查詢條件的回應資料 =====
-    books = BOOKS_DATA.copy() # 直接return BOOKS_DATA 即可 
-    # 相當於從資料庫中取出所有書籍資料，並複製一份到books變數中，
-    # 這樣就不會直接修改到全域的BOOKS_DATA了。
-    
-    # print('request:', request)
-    # print('request.method:', request, request.method)
-    
-    # step 2: ===== 查詢參數處理 (GET with query)=====
-    #GET http://127.0.0.1:8000/api/books/?category=1 - 取得分類為1的書籍
-    if request.method == 'GET':
-        category = request.GET.get('category')
-        search = request.GET.get('search')
-        if category: # query by category id
-            print('category:', category)
-            books_category = []
-            try:
-                # category = int(category)
-                # books = [book for book in books if book['category_id'] == int(category)]
-                for book in books:
-                    print('book:', book)
-                    if book['category_id'] == int(category):
-                        books_category.append(book)
-                        print('books_category:', books_category)
-                
-                books = books_category
-
-            except ValueError:
-                raise Http404
-        
-        # 可省略，與上面雷同
-        if search:  # query by book title
-            print('search:', search)
-            # books = [book for book in books if search.lower() in book['title'].lower()]
-            
-            books_search = []
-            for book in books:
-                if search.lower() in book['title'].lower(): #可部份搜尋
-                    books_search.append(book)
-            books = books_search
-            print('books:', books)
-
-    # step 3: ===== 新增書籍 (POST) by postman=====
-    if request.method == 'POST':
-        print('request.POST:', request.POST)
-        try:
-            data = json.loads(request.body)
-            print('data:', data)
-            new_book = {
-                'id': len(BOOKS_DATA) + 1,
-                'title': data['title'],
-                'author': data['author'],
-                'price': data['price'],
-                'category_id': data['category_id']
-            }
-            BOOKS_DATA.append(new_book)
-            return JsonResponse({
-                'message': '書籍新增成功',
-                'book': new_book
-            })
-        except json.JSONDecodeError:
-            return JsonResponse({
-                'message': '請提供正確的JSON格式資料'
-            }, status=400)
-
-    # step 1: (GET)===== 一般顯示所有書籍列表，無特定查詢條件的回應資料 =====
-    return JsonResponse({"books": books})
-
-@csrf_exempt
 def book_detail(request, book_id):
-    """單本書籍詳細資訊端點
-    # GET http://127.0.0.1:8000/api/books/1/ - 取得特定書籍
-    # PUT http://127.0.0.1:8000/api/books/1/ - 更新書籍  
-    # DELETE http://127.0.0.1:8000/api/books/1/ - 刪除書籍
-    """
-    # 更新id=2的書籍，所以id=2的書籍會改成下面這內容
-    # {"id": 2, "title": "Python\u7a0b\u5f0f\u8a2d\u8a08", "author": "\u738b\u5c0f\u660e", "price": 1200, "category_id": 1}
-    # {"id": 2, "title": "生成式AI入門", "author": "陳小美", "price": 400, "category_id": 3}
-    book = find_book_by_id(book_id)
-    print('book:', book)
-    if not book:
-        return JsonResponse({'error': '書籍不存在'}, status=404)
+    try:
+        # 兩種寫法，檢查書籍是否存在
+        # book = next(book for book in MOCK_BOOKS if book['id'] == book_id)
+        for book in MOCK_BOOKS:
+            # print('book:', book)
+            if book['id'] == book_id:
+                break
+            else:
+                book = None
+        if book == None:
+            raise StopIteration
+    except StopIteration:
+        raise Http404(f"書籍 ID: {book_id} 的書籍不存在")
     
-    if request.method == 'GET':
-        return JsonResponse({'book': book})
-    
-    elif request.method == 'PUT':
-        try:
-            data = json.loads(request.body)
-            book.update(data)
-            return JsonResponse({
-                'message': '書籍更新成功',
-                'book': book
-            })
-        except json.JSONDecodeError:
-            return JsonResponse({
-                'message': '請提供正確的JSON格式資料'
-            }, status=400)
-    
-    elif request.method == 'DELETE':
-        BOOKS_DATA.remove(book)
-        return JsonResponse({
-            'message': '書籍刪除成功'
-        })
-    
-# ===== 書籍評論端點 =====
-# 可讓學生參考以上兩個端點的寫法，來實作書籍評論的GET和POST功能，DELETE功能可略，因為可能有多筆評論，但一次只能刪一筆。
-@csrf_exempt
-def book_reviews(request, book_id):
-    """書籍評論端點
-    GET http://127.0.0.1:8000/api/books/1/reviews/ - 取得特定書籍的評論
-    POST http://127.0.0.1:8000/api/books/1/reviews/ - 新增特定書籍的評論
-    注意：不支援刪除，因可能有多筆review，但一次只能刪一筆
-    DELETE http://127.0.0.1:8000/api/books/1/reviews/ - 刪除特定書籍的評論
-    """
-    book = find_book_by_id(book_id)
-    if not book:
-            return JsonResponse({'error': '書籍不存在'}, status=404)
-        
-    if request.method == 'GET':
-        reviews = get_reviews_by_book_id(book_id)
-        return JsonResponse({
-            'book_title': book['title'],
-            'reviews': reviews
-        })
-    
-    elif request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            new_review = {
-                'id': len(REVIEWS_DATA) + 1,
-                'book_id': book_id,
-                'rating': data['rating'],
-                'comment': data['comment'],
-                'user': data['user']
-            }
-            REVIEWS_DATA.append(new_review)
-            print('REVIEWS_DATA:', REVIEWS_DATA)
-            return JsonResponse({
-                'message': '評論新增成功',
-                'review': new_review
-            })
-        
-        except json.JSONDecodeError:
-            return JsonResponse({
-                'message': '請提供正確的JSON格式資料'
-            }, status=400)
-    # 不支援刪除review，因為可能有多筆review，但一次只能刪一筆
-    # elif request.method == 'DELETE':
-    #     # 這個會回傳多筆評論，且是一個list，無法用.remove(reviews)來刪除
-    #     reviews = get_reviews_by_book_id(book_id)
-    #     print('REVIEWS_DATA:', REVIEWS_DATA)
-    #     REVIEWS_DATA.remove(reviews) # 這行程式碼執行會有問題
-    #     return JsonResponse({
-    #         'message': '評論刪除成功'
-    #     })
-    else:
-        return JsonResponse({'error': '不支援的請求方法'}, status=405)
-    
-# 以下也可略，功能與上面雷同
-def categories_list(request):
-    """分類列表端點
-    http://localhost:8000/api/categories/
-    """
-    return JsonResponse({'categories': CATEGORIES_DATA})
+    # context可以不用
+    context = {
+        'book': book,
+        'page_title': book['title']
+    }
+    return render(request, 'book_detail.html', locals())
 
-def category_detail(request, category_id):
-    """特定分類書籍端點
-    http://localhost:8000/api/categories/1/
-    """
-    category = find_category_by_id(category_id) #從分類資料表中找到特定分類，確認是否有此分類
-    if not category:
-        return JsonResponse({'error': 'Category not found'}, status=404)
+def books_by_author(request, author_slug):
+    # 簡化寫法，下面有一般寫法
+    # filtered_books = [
+    #     book for book in MOCK_BOOKS 
+    #     if book['author_slug'] == author_slug
+    # ]
     
-    # 若有此分類，則再取得該分類的所有書籍資料
-    books = [book for book in BOOKS_DATA if book['category_id'] == category_id]
+    # 一般寫法
+    filtered_books = []
+    for book in MOCK_BOOKS:
+        if book['author_slug'] == author_slug:
+            filtered_books.append(book)
     
-    return JsonResponse({
-        'category': category,
-        'books_count': len(books),
-        'books': books
-    })
+    
+
+    if not filtered_books:
+        raise Http404(f"作者 '{author_slug}' 不存在或無書籍")
+    
+    context = {
+        'books': filtered_books,
+        'author_name': filtered_books[0]['author'],
+        'page_title': f'作者：{filtered_books[0]["author"]}'
+    }
+    return render(request, 'author.html', locals())
+
+def books_by_category(request, category_name):
+    filtered_books = []
+    for book in MOCK_BOOKS:
+        if book['category'] == category_name:
+            filtered_books.append(book)
+    
+    if not filtered_books:
+        raise Http404(f"分類 '{category_name}' 不存在或無書籍")
+    
+    context = {
+        'books': filtered_books,
+        'category_name': category_name,
+        'page_title': f'分類：{category_name}'
+    }
+    print('filtered_books:', filtered_books)
+    return render(request, 'category.html', locals())
+
+# 反解析URL的view
+def post(request, yr, mo, day):
+    return render(request, 'about.html', {'yr': yr, 'mo': mo, 'day': day})
+
+
+# 習題三：API端點 (其他的在api/views.py中)
+def index_api(request):
+    return JsonResponse({"message": "Hello World!"})
+    # return render(request, 'index_api.html')
