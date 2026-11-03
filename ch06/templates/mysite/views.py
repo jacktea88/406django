@@ -6,9 +6,11 @@ def index(request):
     msg = 'hello world by render function'
     return render(request, 'index.html', {'msg': msg})
 
+    # https://cctvn.freeway.gov.tw/abs2mjpg/bmjpg?camera=19660
+
 def twtv(request, tv_id=0):
     print('tv_id:', tv_id)
-    tv_list = [{'name':'公視', 'tvcode':'4RoJ8pxQWTk'},
+    tv_list = [{'name':'公視', 'tvcode':'19660'},
         # {'name':'非凡', 'tvcode':'pDvz-qnGhWI'},
         {'name':'非凡', 'tvcode':'YOn74CNmyD8'},
         {'name':'民視', 'tvcode':'CCTV-N1-N-250.500-M'},
