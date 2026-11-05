@@ -10,7 +10,9 @@ def index(request):
 def detail(request, id):
     try:
         product = models.Product.objects.get(id=id)
-        images = models.PPhoto.objects.filter(product=product)  #針對此product做一對多的查詢
+        print('product:', product.price, product.year, product.id)
+        # images = models.PPhoto.objects.filter(product=product.id)  #針對此product.id做一對多的查詢
+        images = models.PPhoto.objects.filter(product=product)  #.id可省略，因Django會自動使用主鍵查詢
         print('images:',images)
     except:
         pass
